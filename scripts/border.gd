@@ -10,7 +10,7 @@ var windowMax = DisplayServer.screen_get_size()
 func _ready() -> void:
 	if direction == 1:
 		border.global_rotation_degrees = 360
-		border.global_position = Vector2(windowMax.x/2, windowMax.y - 45)
+		border.global_position = Vector2(windowMax.x/2, windowMax.y - 48)
 	elif direction == 2:
 		border.global_rotation_degrees = 90
 		border.global_position = Vector2(windowMin.x, windowMax.y/2)
