@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://deuey06ojkitv"]
+
+[ext_resource type="Texture2D" uid="uid://1dqf7k4trfrm" path="res://assets/frog/frog.png" id="1_mqod6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qyo2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mqod6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rq8tc"]
+radius = 36.878178
+
+[node name="Window" type="Window" unique_id=499168882]
+disable_3d = true
+transparent_bg = true
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+borderless = true
+always_on_top = true
+transparent = true
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1920262282]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=556287124]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_qyo2l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1921632930]
+shape = SubResource("CircleShape2D_rq8tc")

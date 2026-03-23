@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bewpnxhm5e72s"]
+
+[ext_resource type="Texture2D" uid="uid://1dqf7k4trfrm" path="res://assets/frog/frog.png" id="1_mqod6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mqod6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mqod6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qyo2l"]
+radius = 73.0
+
+[node name="Frog" type="CharacterBody2D" unique_id=726386839]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215535128]
+position = Vector2(0, -6)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_mqod6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
+shape = SubResource("CircleShape2D_qyo2l")

@@ -21,7 +21,7 @@ buses/default_bus_layout="uid://dhgcsx13geh8s"
 
 [display]
 
-window/size/mode=3
+window/size/mode=4
 window/size/always_on_top=true
 window/size/sharp_corners=true
 window/size/minimize_disabled=true

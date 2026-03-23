@@ -1,3 +1,25 @@
 [gd_scene format=3 uid="uid://c66f2tiagg1sr"]
 
+[ext_resource type="PackedScene" uid="uid://bewpnxhm5e72s" path="res://scenes/frog.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://crejydxdb4pwp" path="res://scenes/border.tscn" id="2_yqjtg"]
+
 [node name="Game" type="Node2D" unique_id=2032547942]
+
+[node name="Frog" parent="." unique_id=726386839 instance=ExtResource("1_uwrxv")]
+position = Vector2(542, 245)
+
+[node name="Border1" parent="." unique_id=1741348991 instance=ExtResource("2_yqjtg")]
+position = Vector2(235, 399)
+direction = 1
+
+[node name="Border2" parent="." unique_id=1860429218 instance=ExtResource("2_yqjtg")]
+position = Vector2(235, 399)
+direction = 2
+
+[node name="Border3" parent="." unique_id=714536479 instance=ExtResource("2_yqjtg")]
+position = Vector2(235, 399)
+direction = 3
+
+[node name="Border4" parent="." unique_id=1559277797 instance=ExtResource("2_yqjtg")]
+position = Vector2(235, 399)
+direction = 4
