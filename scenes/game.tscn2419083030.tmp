@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://c66f2tiagg1sr"]
+
+[ext_resource type="Script" uid="uid://bd0bxlq84buib" path="res://scripts/game_manager.gd" id="1_gee14"]
+[ext_resource type="PackedScene" uid="uid://coqulkgdvdp7b" path="res://scenes/windowplayer.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://cuososybhlvv3" path="res://scenes/playerV2.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dt0fo0q5o7ekf" path="res://scenes/boundary.tscn" id="8_vtaks"]
+
+[node name="Game" type="Node2D" unique_id=2032547942]
+
+[node name="GameManager" type="Node" parent="." unique_id=6380657]
+unique_name_in_owner = true
+script = ExtResource("1_gee14")
+
+[node name="BoundaryBottom" parent="." unique_id=1294338307 instance=ExtResource("8_vtaks")]
+unique_name_in_owner = true
+position = Vector2(521, 600)
+
+[node name="BoundaryLeft" parent="." unique_id=1000568917 instance=ExtResource("8_vtaks")]
+unique_name_in_owner = true
+position = Vector2(417, 499)
+rotation = 1.5707964
+
+[node name="BoundaryRight" parent="." unique_id=1251149062 instance=ExtResource("8_vtaks")]
+unique_name_in_owner = true
+position = Vector2(625, 500)
+rotation = -1.5707964
+
+[node name="BoundaryTop" parent="." unique_id=1216767721 instance=ExtResource("8_vtaks")]
+unique_name_in_owner = true
+position = Vector2(519, 397)
+rotation = 3.1415927
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1795725812]
+position = Vector2(522, 502)
+scale = Vector2(5, 5)
+
+[node name="Player" parent="." unique_id=473877853 instance=ExtResource("4_lbhrr")]
+position = Vector2(473, 475)
+
+[node name="Window" parent="." unique_id=1081849894 instance=ExtResource("4_iywne")]
