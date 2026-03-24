@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="uid://dhgcsx13geh8s"
 
+[autoload]
+
+GameManager="*uid://bbned4mavy54"
+
 [display]
 
 window/size/mode=4

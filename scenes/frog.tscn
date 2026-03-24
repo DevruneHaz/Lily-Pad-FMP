@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://1dqf7k4trfrm" path="res://assets/frog/frog.png" id="1_mqod6"]
 [ext_resource type="Script" uid="uid://csbh4vfr7uyfh" path="res://scripts/frog.gd" id="1_qyo2l"]
-[ext_resource type="Script" uid="uid://cywvp17fho44i" path="res://scripts/window.gd" id="3_rq8tc"]
+[ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="3_rq8tc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mqod6"]
 animations = [{
@@ -30,21 +30,8 @@ sprite_frames = SubResource("SpriteFrames_mqod6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
 shape = SubResource("CircleShape2D_qyo2l")
 
-[node name="Window" type="Window" parent="." unique_id=174810017]
-transparent_bg = true
-canvas_item_default_texture_filter = 0
-oversampling_override = 1.0
-position = Vector2i(0, 36)
-size = Vector2i(192, 192)
-unresizable = true
-borderless = true
-always_on_top = true
-transparent = true
-sharp_corners = true
-script = ExtResource("3_rq8tc")
-
-[node name="Camera2D" type="Camera2D" parent="Window" unique_id=410526930]
-texture_filter = 1
+[node name="Renderer" parent="." unique_id=1640452048 instance=ExtResource("3_rq8tc")]
+focusSize = Vector2(32, 32)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
