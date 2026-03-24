@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b00gnpmm48i6i"]
+
+[ext_resource type="PackedScene" uid="uid://cbl15pnb4hd8w" path="res://scenes/object.tscn" id="1_1bjs6"]
+[ext_resource type="Script" uid="uid://n151woqfnjrm" path="res://scripts/Object1.gd" id="1_tinr5"]
+
+[node name="Window" type="Window" unique_id=1534111854]
+canvas_item_default_texture_filter = 0
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+script = ExtResource("1_tinr5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=413098337]
+
+[node name="Object" parent="." unique_id=473877853 instance=ExtResource("1_1bjs6")]
+script = null
