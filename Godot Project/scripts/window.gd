@@ -20,13 +20,12 @@ func _ready() -> void:
 	window.world_2d = game_manager._MainWindow.world_2d # Sets the window to view the main world
 	
 	window.size = focusSize * 6
-	
 
 func _process(_delta: float) -> void:
 	velocity = position - last_position
 	last_position = position
 	_Camera.position = get_camera_pos_from_window()
-	window.position = Vector2(focus.position.x - 96, focus.position.y - 96)
+	window.position = Vector2(focus.position.x - ((focusSize.x * 6) / 2), focus.position.y - ((focusSize.y * 6) / 2))
 
 func get_camera_pos_from_window()->Vector2i:
 	return position + velocity
