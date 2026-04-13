@@ -1,35 +1,35 @@
-[gd_scene format=3 uid="uid://bewpnxhm5e72s"]
+[gd_scene format=3 uid="uid://di22s0wvop56g"]
 
-[ext_resource type="Script" uid="uid://csbh4vfr7uyfh" path="res://scripts/frog.gd" id="1_qyo2l"]
-[ext_resource type="Texture2D" uid="uid://dukbig2g8aq6a" path="res://assets/frog/frog_sheet.png" id="2_rq8tc"]
-[ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="3_rq8tc"]
+[ext_resource type="Script" uid="uid://csbh4vfr7uyfh" path="res://scripts/frog.gd" id="1_iyx0m"]
+[ext_resource type="Texture2D" uid="uid://dukbig2g8aq6a" path="res://assets/frog/frog_sheet.png" id="2_74lek"]
+[ext_resource type="PackedScene" uid="uid://mlcwt0pqs4a8" path="res://scenes/test_render.tscn" id="3_iyx0m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1g2vb"]
-atlas = ExtResource("2_rq8tc")
+atlas = ExtResource("2_74lek")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybftx"]
-atlas = ExtResource("2_rq8tc")
+atlas = ExtResource("2_74lek")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ifle"]
-atlas = ExtResource("2_rq8tc")
+atlas = ExtResource("2_74lek")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uu7fg"]
-atlas = ExtResource("2_rq8tc")
+atlas = ExtResource("2_74lek")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ycnbg"]
-atlas = ExtResource("2_rq8tc")
+atlas = ExtResource("2_74lek")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqhdc"]
-atlas = ExtResource("2_rq8tc")
+atlas = ExtResource("2_74lek")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4au2m"]
-atlas = ExtResource("2_rq8tc")
+atlas = ExtResource("2_74lek")
 region = Rect2(160, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mqod6"]
@@ -65,15 +65,12 @@ animations = [{
 radius = 71.84706
 
 [node name="Frog" type="CharacterBody2D" unique_id=726386839]
-top_level = true
 light_mask = 2
 visibility_layer = 2
-z_index = 1
 input_pickable = true
-script = ExtResource("1_qyo2l")
+script = ExtResource("1_iyx0m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215535128]
-top_level = true
 light_mask = 2
 visibility_layer = 2
 position = Vector2(0, -6.0000005)
@@ -83,11 +80,11 @@ animation = &"idle"
 frame_progress = 0.48356918
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("CircleShape2D_qyo2l")
 
-[node name="Renderer" parent="." unique_id=1640452048 instance=ExtResource("3_rq8tc")]
-canvas_cull_mask = 4293918722
-focusSize = Vector2(32, 32)
+[node name="Renderer" parent="." unique_id=1640452048 instance=ExtResource("3_iyx0m")]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

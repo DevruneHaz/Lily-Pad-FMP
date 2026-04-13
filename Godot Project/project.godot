@@ -66,8 +66,13 @@ left_click={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="Frog"
+
 [physics]
 
+common/physics_jitter_fix=0.0
 3d/physics_engine="Jolt Physics"
 
 [rendering]

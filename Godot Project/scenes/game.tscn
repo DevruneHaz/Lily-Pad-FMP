@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bbned4mavy54" path="res://scenes/game_manager.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bewpnxhm5e72s" path="res://scenes/frog.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crejydxdb4pwp" path="res://scenes/border.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://dwbjtt1xlp0gh" path="res://scenes/dog.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dwbjtt1xlp0gh" path="res://scenes/ball.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2032547942]
 
@@ -27,7 +27,7 @@ position = Vector2(235, 399)
 direction = 4
 
 [node name="Frog" parent="." unique_id=726386839 instance=ExtResource("1_uwrxv")]
-position = Vector2(134, 224)
+position = Vector2(583, 176)
 
-[node name="Dog" parent="." unique_id=1924050604 instance=ExtResource("4_lbhrr")]
-position = Vector2(1794, 299)
+[node name="Ball" parent="." unique_id=1924050604 instance=ExtResource("4_lbhrr")]
+position = Vector2(754, 180)

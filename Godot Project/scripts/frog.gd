@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var frog: CharacterBody2D = $"."
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+func _ready() -> void:
+	sprite.play()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
