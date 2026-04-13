@@ -66,16 +66,11 @@ radius = 71.84706
 
 [node name="Frog" type="CharacterBody2D" unique_id=726386839]
 top_level = true
-light_mask = 2
-visibility_layer = 2
 z_index = 1
 input_pickable = true
 script = ExtResource("1_qyo2l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215535128]
-top_level = true
-light_mask = 2
-visibility_layer = 2
 position = Vector2(0, -6.0000005)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_mqod6")
@@ -86,7 +81,7 @@ frame_progress = 0.48356918
 shape = SubResource("CircleShape2D_qyo2l")
 
 [node name="Renderer" parent="." unique_id=1640452048 instance=ExtResource("3_rq8tc")]
-canvas_cull_mask = 4293918722
+canvas_cull_mask = 4293918720
 focusSize = Vector2(32, 32)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
