@@ -4,18 +4,12 @@ extends Node
 
 @export var hovering: Node2D
 
-@onready var renderLayer: int = 0
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().get_root().set_transparent_background(true)
 	_MainWindow.borderless = true
 	_MainWindow.always_on_top = true
 	set_passthrough()
-	
-#func _process(_delta: float) -> void:
-	#print(renderLayer)
-
 
 func set_passthrough() -> void: #Sets coordinates of the hitbox
 	var texture_corners: PackedVector2Array = [
