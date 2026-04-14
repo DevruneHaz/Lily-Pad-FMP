@@ -5,6 +5,7 @@
 [node name="Renderer" type="Window" unique_id=1640452048]
 transparent_bg = true
 canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4293918721
 oversampling_override = 1.0
 position = Vector2i(0, 36)
 unresizable = true
@@ -15,6 +16,7 @@ sharp_corners = true
 script = ExtResource("1_vghih")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1095323919]
+visibility_layer = 0
 texture_filter = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

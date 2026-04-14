@@ -5,6 +5,8 @@ extends Window
 @export var focusSize: Vector2
 @onready var window: Window = $"."
 @onready var game_manager: Node = GameManager
+@export var sprite: Node2D
+@export_range(0, 19) var visibilityLayer: int = 0
 
 var last_position: = Vector2i.ZERO
 var velocity: = Vector2i.ZERO
@@ -14,12 +16,20 @@ func _ready() -> void:
 	# Set the anchor mode to "Fixed top-left"
 	# Easier to work with since it corresponds to the window coordinates
 	_Camera.anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
-	
 	close_requested.connect(queue_free) # Actually close the window when clicking the close button
-	
 	window.world_2d = game_manager._MainWindow.world_2d # Sets the window to view the main world
-	
 	window.size = focusSize * 6
+	
+	get_parent().visibility_layer = visibilityLayer
+	window.canvas_cull_mask = visibilityLayer
+	_Camera.visibility_layer = visibilityLayer
+	sprite.visibility_layer = visibilityLayer
+	
+	#get_parent().set_visibility_layer_bit(visibilityLayer, true)
+	#window.set_canvas_cull_mask_bit(visibilityLayer, true)
+	#window.canvas_cull_mask = get_parent().visibility_layer
+	#_Camera.set_visibility_layer_bit(visibilityLayer, true)
+	#sprite.set_visibility_layer_bit(visibilityLayer, true)
 
 func _process(_delta: float) -> void:
 	velocity = position - last_position
@@ -34,6 +44,11 @@ func _on_mouse_entered() -> void:
 	hovering = true
 	game_manager.hovering = focus
 	print("hovering")
+	
+	print(get_parent().visibility_layer)
+	print(window.canvas_cull_mask)
+	print(_Camera.visibility_layer)
+	print(sprite.visibility_layer)
 
 func _on_mouse_exited() -> void:
 	hovering = false

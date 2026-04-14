@@ -1,19 +1,33 @@
 [gd_scene format=3 uid="uid://dwbjtt1xlp0gh"]
 
-[ext_resource type="Texture2D" uid="uid://cejkbe23o3kg7" path="res://assets/frog/dog.png" id="1_vwjdu"]
+[ext_resource type="Script" uid="uid://dgcnnmnr0te7c" path="res://scenes/dog.gd" id="1_qjqk5"]
+[ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/frog/ball.png" id="2_gmowd"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_qjqk5"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qjqk5"]
+bounce = 0.55
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmowd"]
-radius = 89.26926
+radius = 96.00521
 
 [node name="Dog" type="RigidBody2D" unique_id=1924050604]
+visibility_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_qjqk5")
+script = ExtResource("1_qjqk5")
+visibilityLayer = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=330902248]
+visibility_layer = 0
 scale = Vector2(6, 6)
-texture = ExtResource("1_vwjdu")
+texture = ExtResource("2_gmowd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=849297686]
+visibility_layer = 0
 shape = SubResource("CircleShape2D_gmowd")
 
-[node name="Renderer" parent="." unique_id=1640452048 instance=ExtResource("2_qjqk5")]
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("sprite") instance=ExtResource("2_qjqk5")]
+transparent_bg = false
+canvas_cull_mask = 4293918720
 focusSize = Vector2(32, 32)
+sprite = NodePath("../Sprite2D")
+visibilityLayer = 5
