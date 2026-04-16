@@ -27,19 +27,7 @@ position = Vector2(235, 399)
 direction = 4
 
 [node name="Dog" parent="." unique_id=1924050604 instance=ExtResource("4_lbhrr")]
-position = Vector2(883, 75)
-
-[node name="Dog2" parent="." unique_id=633726095 instance=ExtResource("4_lbhrr")]
-position = Vector2(1073, 160)
-
-[node name="Dog3" parent="." unique_id=609459928 instance=ExtResource("4_lbhrr")]
-position = Vector2(982, 342)
-
-[node name="Dog4" parent="." unique_id=1891897333 instance=ExtResource("4_lbhrr")]
-position = Vector2(683, -64)
-
-[node name="Dog5" parent="." unique_id=959737226 instance=ExtResource("4_lbhrr")]
-position = Vector2(1087, -146)
+position = Vector2(1034, 218)
 
 [node name="Frog" parent="." unique_id=726386839 instance=ExtResource("1_uwrxv")]
-position = Vector2(859, 208)
+position = Vector2(1066, 173)

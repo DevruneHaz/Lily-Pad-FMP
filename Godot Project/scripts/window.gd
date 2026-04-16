@@ -6,7 +6,7 @@ extends Window
 @onready var window: Window = $"."
 @onready var game_manager: Node = GameManager
 @export var sprite: Node2D
-@export_range(0, 19) var visibilityLayer: int = 0
+@export_range(1, 20) var visibilityLayer: int = 0
 
 var last_position: = Vector2i.ZERO
 var velocity: = Vector2i.ZERO
@@ -20,18 +20,20 @@ func _ready() -> void:
 	window.world_2d = game_manager._MainWindow.world_2d # Sets the window to view the main world
 	window.size = focusSize * 6
 	
-	get_parent().visibility_layer = visibilityLayer
-	window.canvas_cull_mask = visibilityLayer
-	_Camera.visibility_layer = visibilityLayer
-	sprite.visibility_layer = visibilityLayer
+	visibilityLayer = game_manager.layer + 1
+	game_manager.layer = visibilityLayer
 	
-	#get_parent().set_visibility_layer_bit(visibilityLayer, true)
-	#window.set_canvas_cull_mask_bit(visibilityLayer, true)
-	#window.canvas_cull_mask = get_parent().visibility_layer
-	#_Camera.set_visibility_layer_bit(visibilityLayer, true)
-	#sprite.set_visibility_layer_bit(visibilityLayer, true)
+	#Sets the render layers of the object
+	get_parent().set_visibility_layer_bit(visibilityLayer, true)
+	#window.canvas_cull_mask = visibilityLayer
+	window.set_canvas_cull_mask_bit(visibilityLayer, true)
+	#_Camera.visibility_layer = visibilityLayer
+	_Camera.set_visibility_layer_bit(visibilityLayer, true)
+	#sprite.visibility_layer = visibilityLayer
+	sprite.set_visibility_layer_bit(visibilityLayer, true)
+	
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = position - last_position
 	last_position = position
 	_Camera.position = get_camera_pos_from_window()
