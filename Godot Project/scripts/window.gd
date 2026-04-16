@@ -23,14 +23,15 @@ func _ready() -> void:
 	visibilityLayer = game_manager.layer + 1
 	game_manager.layer = visibilityLayer
 	
+	#Removes the original render layers of the object
+	get_parent().set_visibility_layer_bit(1, false)
+	sprite.set_visibility_layer_bit(1, false)
+	
 	#Sets the render layers of the object
 	get_parent().set_visibility_layer_bit(visibilityLayer, true)
-	#window.canvas_cull_mask = visibilityLayer
-	window.set_canvas_cull_mask_bit(visibilityLayer, true)
-	#_Camera.visibility_layer = visibilityLayer
-	_Camera.set_visibility_layer_bit(visibilityLayer, true)
-	#sprite.visibility_layer = visibilityLayer
 	sprite.set_visibility_layer_bit(visibilityLayer, true)
+	window.set_canvas_cull_mask_bit(visibilityLayer, true)
+	_Camera.set_visibility_layer_bit(visibilityLayer, true)
 	
 
 func _physics_process(_delta: float) -> void:

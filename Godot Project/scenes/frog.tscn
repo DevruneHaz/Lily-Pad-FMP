@@ -66,19 +66,16 @@ radius = 70.0
 
 [node name="Frog" type="CharacterBody2D" unique_id=726386839]
 top_level = true
-visibility_layer = 0
 input_pickable = true
 script = ExtResource("1_qyo2l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215535128]
-visibility_layer = 0
 position = Vector2(0, -2)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_mqod6")
 frame_progress = 0.32624963
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
-visibility_layer = 0
 shape = SubResource("CircleShape2D_qyo2l")
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("sprite") instance=ExtResource("3_rq8tc")]

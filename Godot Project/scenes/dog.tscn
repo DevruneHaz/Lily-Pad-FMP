@@ -12,18 +12,15 @@ radius = 96.00521
 
 [node name="Dog" type="RigidBody2D" unique_id=1924050604]
 top_level = true
-visibility_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_qjqk5")
 script = ExtResource("1_qjqk5")
 visibilityLayer = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=330902248]
-visibility_layer = 0
 scale = Vector2(6, 6)
 texture = ExtResource("2_gmowd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=849297686]
-visibility_layer = 0
 shape = SubResource("CircleShape2D_gmowd")
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("sprite") instance=ExtResource("2_qjqk5")]
