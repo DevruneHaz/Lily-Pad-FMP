@@ -12,6 +12,7 @@ unresizable = true
 borderless = true
 always_on_top = true
 transparent = true
+unfocusable = true
 sharp_corners = true
 script = ExtResource("1_vghih")
 

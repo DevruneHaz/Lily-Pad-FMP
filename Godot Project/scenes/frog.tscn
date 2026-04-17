@@ -82,6 +82,3 @@ shape = SubResource("CircleShape2D_qyo2l")
 canvas_cull_mask = 4293918720
 focusSize = Vector2(32, 32)
 sprite = NodePath("../AnimatedSprite2D")
-
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

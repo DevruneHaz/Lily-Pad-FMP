@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 @onready var _MainWindow: Window = get_window()
 
@@ -6,12 +6,23 @@ extends Node
 
 @onready var layer: int = 0
 
+@onready var mousePosition: Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().get_root().set_transparent_background(true)
 	_MainWindow.borderless = true
 	_MainWindow.always_on_top = true
+	_MainWindow.unfocusable = true
+	#_MainWindow.transient_to_focused = true
+	_MainWindow.transient = true
+	_MainWindow.minimize_disabled = true
+	_MainWindow.maximize_disabled = true
 	set_passthrough()
+	
+func _process(_delta: float) -> void:
+	mousePosition = get_global_mouse_position()
+	
 
 func set_passthrough() -> void: #Sets coordinates of the hitbox
 	var texture_corners: PackedVector2Array = [

@@ -12,6 +12,15 @@ var last_position: = Vector2i.ZERO
 var velocity: = Vector2i.ZERO
 var hovering = false
 
+var speed: float
+var speedMultiplier: int = 25
+var maxSpeed: int = 355000
+var direction: Vector2
+var grounded: bool
+var grabbed: bool
+var startGrabbing: bool
+var grabPoint: Vector2
+
 func _ready() -> void:
 	# Set the anchor mode to "Fixed top-left"
 	# Easier to work with since it corresponds to the window coordinates
@@ -32,27 +41,33 @@ func _ready() -> void:
 	sprite.set_visibility_layer_bit(visibilityLayer, true)
 	window.set_canvas_cull_mask_bit(visibilityLayer, true)
 	_Camera.set_visibility_layer_bit(visibilityLayer, true)
-	
+
 
 func _physics_process(_delta: float) -> void:
 	velocity = position - last_position
 	last_position = position
 	_Camera.position = get_camera_pos_from_window()
 	window.position = Vector2(focus.position.x - ((focusSize.x * 6) / 2), focus.position.y - ((focusSize.y * 6) / 2))
+	
 
 func get_camera_pos_from_window()->Vector2i:
 	return position + velocity
 
+func _input(event):
+	if hovering:
+		if event.is_action_pressed("left_click"):
+			print("Grabbing ", focus)
+			grabbed = true
+			
+		if event.is_action_released("left_click"):
+			grabbed = false
+
+
 func _on_mouse_entered() -> void:
 	hovering = true
 	game_manager.hovering = focus
-	print("hovering")
-	
-	print(get_parent().visibility_layer)
-	print(window.canvas_cull_mask)
-	print(_Camera.visibility_layer)
-	print(sprite.visibility_layer)
 
 func _on_mouse_exited() -> void:
-	hovering = false
-	game_manager.hovering = null
+	if grabbed == false:
+		hovering = false
+		game_manager.hovering = null

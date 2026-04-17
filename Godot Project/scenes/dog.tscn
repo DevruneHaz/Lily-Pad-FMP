@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://dwbjtt1xlp0gh"]
 
-[ext_resource type="Script" uid="uid://dgcnnmnr0te7c" path="res://scenes/dog.gd" id="1_qjqk5"]
 [ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/frog/ball.png" id="2_gmowd"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_qjqk5"]
 
@@ -13,8 +12,6 @@ radius = 96.00521
 [node name="Dog" type="RigidBody2D" unique_id=1924050604]
 top_level = true
 physics_material_override = SubResource("PhysicsMaterial_qjqk5")
-script = ExtResource("1_qjqk5")
-visibilityLayer = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=330902248]
 scale = Vector2(6, 6)
