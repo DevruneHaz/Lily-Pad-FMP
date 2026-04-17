@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dwbjtt1xlp0gh"]
 
+[ext_resource type="Script" uid="uid://bl4wf4d112vyj" path="res://scenes/ball.gd" id="1_f7cbr"]
 [ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/frog/ball.png" id="2_gmowd"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_qjqk5"]
 
@@ -9,9 +10,10 @@ bounce = 0.55
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmowd"]
 radius = 96.00521
 
-[node name="Dog" type="RigidBody2D" unique_id=1924050604]
+[node name="Ball" type="RigidBody2D" unique_id=1924050604]
 top_level = true
 physics_material_override = SubResource("PhysicsMaterial_qjqk5")
+script = ExtResource("1_f7cbr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=330902248]
 scale = Vector2(6, 6)

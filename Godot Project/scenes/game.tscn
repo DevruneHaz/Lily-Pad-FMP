@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bbned4mavy54" path="res://scenes/game_manager.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bewpnxhm5e72s" path="res://scenes/frog.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crejydxdb4pwp" path="res://scenes/border.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://dwbjtt1xlp0gh" path="res://scenes/dog.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dwbjtt1xlp0gh" path="res://scenes/ball.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2032547942]
 
