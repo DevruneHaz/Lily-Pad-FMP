@@ -82,3 +82,13 @@ shape = SubResource("CircleShape2D_qyo2l")
 canvas_cull_mask = 4293918720
 focusSize = Vector2(32, 32)
 sprite = NodePath("../AnimatedSprite2D")
+
+[node name="IdleTimer" type="Timer" parent="." unique_id=1906477383]
+wait_time = 6.0
+one_shot = true
+
+[node name="WanderTimer" type="Timer" parent="." unique_id=70458461]
+one_shot = true
+
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

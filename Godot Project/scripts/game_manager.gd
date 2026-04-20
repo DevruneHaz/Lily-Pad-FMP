@@ -1,12 +1,14 @@
 extends Node2D
 
 @onready var _MainWindow: Window = get_window()
-
 @export var hovering: Node2D
-
 @onready var layer: int = 0
-
 @onready var mousePosition: Vector2
+
+@onready var bottomBorder: Node2D
+@onready var leftBorder: Node2D
+@onready var rightBorder: Node2D
+@onready var topBorder: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
