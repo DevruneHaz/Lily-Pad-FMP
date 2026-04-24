@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bewpnxhm5e72s" path="res://scenes/frog.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crejydxdb4pwp" path="res://scenes/border.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dwbjtt1xlp0gh" path="res://scenes/ball.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://duht5gvcjode5" path="res://scenes/grasshopper.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=2032547942]
 
@@ -11,23 +12,47 @@
 unique_name_in_owner = true
 
 [node name="Border1" parent="." unique_id=1741348991 instance=ExtResource("2_yqjtg")]
-position = Vector2(235, 399)
+position = Vector2(235, 401)
+collision_layer = 4294967295
+collision_mask = 4294967295
 direction = 1
 
 [node name="Border2" parent="." unique_id=1860429218 instance=ExtResource("2_yqjtg")]
-position = Vector2(235, 399)
+position = Vector2(235, 401)
+collision_layer = 4294967295
+collision_mask = 4294967295
 direction = 2
 
 [node name="Border3" parent="." unique_id=714536479 instance=ExtResource("2_yqjtg")]
-position = Vector2(235, 399)
+position = Vector2(235, 401)
+collision_layer = 4294967295
+collision_mask = 4294967295
 direction = 3
 
 [node name="Border4" parent="." unique_id=1559277797 instance=ExtResource("2_yqjtg")]
-position = Vector2(235, 399)
+position = Vector2(235, 401)
+collision_layer = 4294967295
+collision_mask = 4294967295
 direction = 4
 
 [node name="Frog" parent="." unique_id=726386839 instance=ExtResource("1_uwrxv")]
-position = Vector2(839, 166)
+unique_name_in_owner = true
+position = Vector2(1020, 145)
 
 [node name="Ball" parent="." unique_id=1924050604 instance=ExtResource("4_lbhrr")]
 position = Vector2(1560, 2)
+
+[node name="Grasshopper" parent="." unique_id=1830881078 instance=ExtResource("5_iywne")]
+position = Vector2(943, 741)
+
+[node name="Grasshopper2" parent="." unique_id=1616309357 instance=ExtResource("5_iywne")]
+position = Vector2(1618, 411)
+
+[node name="Grasshopper3" parent="." unique_id=646645308 instance=ExtResource("5_iywne")]
+position = Vector2(593, 403)
+
+[node name="Grasshopper4" parent="." unique_id=116382869 instance=ExtResource("5_iywne")]
+position = Vector2(1790, 649)
+
+[node name="Grasshopper5" parent="." unique_id=1986687168 instance=ExtResource("5_iywne")]
+position = Vector2(2002, 175)

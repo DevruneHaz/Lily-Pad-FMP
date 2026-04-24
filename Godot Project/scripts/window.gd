@@ -1,7 +1,7 @@
 extends Window
 
 @onready var _Camera: Camera2D = $Camera2D
-@onready var focus: Node2D = $".."
+@export var focus: Node2D
 @export var focusSize: Vector2
 @onready var window: Window = $"."
 @onready var game_manager: Node = GameManager
@@ -33,15 +33,16 @@ func _ready() -> void:
 	game_manager.layer = visibilityLayer
 	
 	#Removes the original render layers of the object
-	get_parent().set_visibility_layer_bit(1, false)
-	sprite.set_visibility_layer_bit(1, false)
+	get_parent().visibility_layer = 0
+	sprite.visibility_layer = 0
+	window.canvas_cull_mask = 0
+	_Camera.visibility_layer = 0
 	
 	#Sets the render layers of the object
 	get_parent().set_visibility_layer_bit(visibilityLayer, true)
 	sprite.set_visibility_layer_bit(visibilityLayer, true)
 	window.set_canvas_cull_mask_bit(visibilityLayer, true)
 	_Camera.set_visibility_layer_bit(visibilityLayer, true)
-
 
 func _physics_process(_delta: float) -> void:
 	velocity = position - last_position

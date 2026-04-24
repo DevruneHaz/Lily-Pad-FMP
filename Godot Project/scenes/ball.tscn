@@ -22,7 +22,7 @@ texture = ExtResource("2_gmowd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=849297686]
 shape = SubResource("CircleShape2D_gmowd")
 
-[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("sprite") instance=ExtResource("2_qjqk5")]
-canvas_cull_mask = 4293918720
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_qjqk5")]
+focus = NodePath("..")
 focusSize = Vector2(32, 32)
 sprite = NodePath("../Sprite2D")

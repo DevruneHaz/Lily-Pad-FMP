@@ -8,12 +8,17 @@ extends CharacterBody2D
 @onready var idle_timer: Timer = $IdleTimer
 @onready var wander_timer: Timer = $WanderTimer
 
+@onready var tongue: Line2D = $Tongue
+@onready var tongue_end: Sprite2D = $Tongue/TongueEnd
+const tongueRenderer = preload("uid://cyfbgcqqn2fdm")
+@onready var frogTongueRenderer: Window = $Tongue/Renderer
+
 enum {
 	IDLE,
 	WANDER,
 	JUMP,
 	EAT,
-	GRABBED,
+	GRABBED
 }
 var state = IDLE
 
@@ -27,26 +32,32 @@ var startGrabbing: bool
 var wanderDirection: int = 1
 var jumpDirection: int = 1
 var isJumping: bool = false
+var target: Node2D
+
 
 func _ready():
 	sprite.play()
 	idle_timer.start()
 
 func _on_idle_timer_timeout() -> void:
-	var jumping: bool = randi_range(0, 1)
-	if jumping:
-		jumpDirection = randi_range(-1, 0)
-		if jumpDirection == 0:
-			jumpDirection = 1
-		isJumping = true
-		state = JUMP
+	if game_manager.grassHoppers.is_empty():
+		var jumping: bool = randi_range(0, 1)
+		if jumping:
+			jumpDirection = randi_range(-1, 0)
+			if jumpDirection == 0:
+				jumpDirection = 1
+			isJumping = true
+			state = JUMP
+		else:
+			wander_timer.wait_time = randf_range(2, 5)
+			wanderDirection = randi_range(-1, 0)
+			if wanderDirection == 0:
+				wanderDirection = 1
+			wander_timer.start()
+			state = WANDER
 	else:
-		wander_timer.wait_time = randf_range(2, 5)
-		wanderDirection = randi_range(-1, 0)
-		if wanderDirection == 0:
-			wanderDirection = 1
-		wander_timer.start()
-		state = WANDER
+		target = game_manager.grassHoppers.pick_random()
+		state = EAT
 
 func _on_jump_complete() -> void:
 	idle_timer.wait_time = randf_range(1, 1.5)
@@ -61,18 +72,19 @@ func _on_wander_timer_timeout() -> void:
 	state = IDLE
 
 func _process(_delta: float) -> void:
-	grabbed = renderer.grabbed
-	if grabbed == true and startGrabbing == false:
-		state = GRABBED
-		idle_timer.stop()
-		wander_timer.stop()
-		print(startGrabbing)
-		startGrabbing = true
-	elif grabbed == false and startGrabbing == true:
-		state = IDLE
-		idle_timer.start()
-		print(startGrabbing)
-		startGrabbing = false
+	if state != EAT:
+		grabbed = renderer.grabbed
+		if grabbed == true and startGrabbing == false:
+			state = GRABBED
+			idle_timer.stop()
+			wander_timer.stop()
+			print(startGrabbing)
+			startGrabbing = true
+		elif grabbed == false and startGrabbing == true:
+			state = IDLE
+			idle_timer.start()
+			print(startGrabbing)
+			startGrabbing = false
 
 func _physics_process(delta: float) -> void:
 	#Flip Sprite
@@ -96,6 +108,10 @@ func _physics_process(delta: float) -> void:
 	match state:
 		JUMP:
 			jumpState()
+			
+	match state:
+		EAT:
+			eatState()
 
 func idleState(desiredDelta: float):
 	if not is_on_floor():
@@ -147,3 +163,25 @@ func jumpState():
 		isJumping = false
 		_on_jump_complete()
 	move_and_slide()
+
+func eatState():
+	if target:
+		tongue.visible = true
+		tongue_end.visible = true
+		frogTongueRenderer.visible = true
+		frogTongueRenderer.get_parent().set_visibility_layer_bit(1, true)
+		frogTongueRenderer.sprite.set_visibility_layer_bit(1, true)
+		frogTongueRenderer.window.set_canvas_cull_mask_bit(1, true)
+		frogTongueRenderer._Camera.set_visibility_layer_bit(1, true)
+		
+		target.eaten(self)
+		tongue.set_point_position(1, (target.global_position - frog.global_position))
+		tongue_end.position = (target.global_position - frog.global_position)
+		
+	else:
+		idle_timer.wait_time = randf_range(1.5, 3)
+		idle_timer.start()
+		frogTongueRenderer.visible = false
+		tongue.visible = false
+		tongue_end.visible = false
+		state = IDLE
