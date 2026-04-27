@@ -99,8 +99,9 @@ func eaten(newFrog: Node2D):
 		justEaten = true
 
 func eatenState(desiredDelta: float):
+	velocity = Vector2(0, 0)
 	direction = (frog.position - position).normalized()
-	speed = position.distance_to(frog.position) * randf_range(.5, 2)
+	speed = position.distance_to(frog.position) * randf_range(7, 10)
 	
 	for overlapped_body in eat_area.get_overlapping_bodies():
 		if overlapped_body == frog:
@@ -115,3 +116,4 @@ func eatenState(desiredDelta: float):
 		direction = direction.bounce(collision.get_normal())
 	
 	move_and_slide()
+	

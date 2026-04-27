@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var tongue_end: Sprite2D = $Tongue/TongueEnd
 const tongueRenderer = preload("uid://cyfbgcqqn2fdm")
 @onready var frogTongueRenderer: Window = $Tongue/Renderer
+@onready var tongue_polygon: Polygon2D = $Tongue/TonguePolygon
 
 enum {
 	IDLE,
@@ -33,6 +34,7 @@ var wanderDirection: int = 1
 var jumpDirection: int = 1
 var isJumping: bool = false
 var target: Node2D
+var eating: bool
 
 
 func _ready():
@@ -174,9 +176,11 @@ func eatState():
 		frogTongueRenderer.window.set_canvas_cull_mask_bit(1, true)
 		frogTongueRenderer._Camera.set_visibility_layer_bit(1, true)
 		
+		frogTongueRenderer.grab_focus()
 		target.eaten(self)
-		tongue.set_point_position(1, (target.global_position - frog.global_position))
-		tongue_end.position = (target.global_position - frog.global_position)
+		tongue.set_point_position(1, tongue.to_local(target.global_position))
+		tongue_end.position = (tongue.to_local(target.global_position))
+		#set_tongue_passthrough()
 		
 	else:
 		idle_timer.wait_time = randf_range(1.5, 3)
@@ -185,3 +189,10 @@ func eatState():
 		tongue.visible = false
 		tongue_end.visible = false
 		state = IDLE
+		
+func set_tongue_passthrough():
+	tongue_polygon.polygon.set(0 , Vector2(frog.position.x, frog.position.y))
+	tongue_polygon.polygon.set(1 , Vector2(frog.position.x, frog.position.y))
+	tongue_polygon.polygon.set(2 , (target.global_position + Vector2(5, 5)))
+	tongue_polygon.polygon.set(3 , (target.global_position - Vector2(5, 5)))
+	frogTongueRenderer.mouse_passthrough_polygon = tongue_polygon.polygon

@@ -50,9 +50,3 @@ position = Vector2(1618, 411)
 
 [node name="Grasshopper3" parent="." unique_id=646645308 instance=ExtResource("5_iywne")]
 position = Vector2(593, 403)
-
-[node name="Grasshopper4" parent="." unique_id=116382869 instance=ExtResource("5_iywne")]
-position = Vector2(1790, 649)
-
-[node name="Grasshopper5" parent="." unique_id=1986687168 instance=ExtResource("5_iywne")]
-position = Vector2(2002, 175)
