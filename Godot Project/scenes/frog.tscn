@@ -77,7 +77,6 @@ sprite_frames = SubResource("SpriteFrames_mqod6")
 frame_progress = 0.32624963
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
-visible = false
 shape = SubResource("CircleShape2D_qyo2l")
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_rq8tc")]
