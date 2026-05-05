@@ -22,6 +22,7 @@ enum {
 	GRABBED
 }
 var state = IDLE
+var lastState = IDLE
 
 var speed: float
 var speedMultiplier: int = 25
@@ -41,6 +42,97 @@ func _ready():
 	sprite.play()
 	idle_timer.start()
 
+func animate():
+	if state == IDLE:
+		if lastState == WANDER:
+			if speed > 0:
+				walkAnimation()
+			else:
+				idleAnimation()
+		elif lastState == JUMP:
+			if speed > 0:
+				jumpAnimation()
+			else:
+				idleAnimation()
+		elif lastState == GRABBED:
+			if speed != 0:
+				jumpAnimation()
+			else:
+				idleAnimation()
+		else:
+			idleAnimation()
+	elif state == GRABBED:
+		idleAnimation()
+	else:
+		idleAnimation()
+			
+
+func idleAnimation():
+	sprite.play()
+	sprite.animation = "Idle"
+	if direction.x > 0:
+		sprite.flip_h = true
+	elif direction.x < 0:
+		sprite.flip_h = false
+
+func walkAnimation():
+	sprite.play()
+	sprite.flip_h = false
+	if direction.x > 0:
+		sprite.animation = "Walk_Right"
+	elif direction.x < 0:
+		sprite.animation = "Walk_Left"
+
+func jumpAnimation():
+	sprite.flip_h = false
+	sprite.pause()
+	if direction.x > 0:
+		sprite.animation = "Walk_Right"
+	elif direction.x < 0:
+		sprite.animation = "Walk_Left"
+
+func fallingAnimation():
+	sprite.flip_h = false
+	sprite.animation = "Falling_Left"
+	if direction.y < 0:
+		print("Up")
+		if direction.x > 0:
+			print("Right")
+			sprite.set_frame_and_progress(7, 0)
+		elif direction.x < 0:
+			print("Left")
+			sprite.set_frame_and_progress(1, 0)
+		elif direction.x == 0:
+			sprite.set_frame_and_progress(0, 0)
+			
+	elif direction.y > 0:
+		print("Down")
+		if direction.x > 0:
+			print("Right")
+			sprite.set_frame_and_progress(5, 0)
+		elif direction.x < 0:
+			print("Left")
+			sprite.set_frame_and_progress(3, 0)
+		elif direction.x == 0:
+			sprite.set_frame_and_progress(4, 0)
+			
+	elif direction.y == 0:
+		if direction.x > 0:
+			print("Right")
+			sprite.set_frame_and_progress(6, 0)
+		elif direction.x < 0:
+			print("Left")
+			sprite.set_frame_and_progress(2, 0)
+		elif direction.x == 0:
+			sprite.set_frame_and_progress(0, 0)
+			
+	sprite.pause()
+
+
+func eatAnimation():
+	pass
+
+
 func _on_idle_timer_timeout() -> void:
 	if game_manager.grassHoppers.is_empty():
 		var jumping: bool = randi_range(0, 1)
@@ -50,51 +142,52 @@ func _on_idle_timer_timeout() -> void:
 				jumpDirection = 1
 			isJumping = true
 			state = JUMP
+			lastState = IDLE
 		else:
-			wander_timer.wait_time = randf_range(2, 5)
+			wander_timer.wait_time = randf_range(2, 3)
 			wanderDirection = randi_range(-1, 0)
 			if wanderDirection == 0:
 				wanderDirection = 1
 			wander_timer.start()
 			state = WANDER
+			lastState = IDLE
 	else:
 		target = game_manager.grassHoppers.pick_random()
 		state = EAT
+		lastState = IDLE
 
 func _on_jump_complete() -> void:
-	idle_timer.wait_time = randf_range(1, 1.5)
+	idle_timer.wait_time = randf_range(2, 5)
 	idle_timer.start()
 	velocity = Vector2(0, 0)
 	state = IDLE
+	lastState = JUMP
 
 func _on_wander_timer_timeout() -> void:
-	idle_timer.wait_time = randf_range(1, 1.5)
+	idle_timer.wait_time = randf_range(1, 2)
 	idle_timer.start()
 	velocity = Vector2(0, 0)
 	state = IDLE
+	lastState = WANDER
 
 func _process(_delta: float) -> void:
+	animate()
+	
 	if state != EAT:
 		grabbed = renderer.grabbed
 		if grabbed == true and startGrabbing == false:
+			lastState = state
 			state = GRABBED
 			idle_timer.stop()
 			wander_timer.stop()
-			print(startGrabbing)
 			startGrabbing = true
 		elif grabbed == false and startGrabbing == true:
 			state = IDLE
+			lastState = GRABBED
 			idle_timer.start()
-			print(startGrabbing)
 			startGrabbing = false
 
 func _physics_process(delta: float) -> void:
-	#Flip Sprite
-	if direction.x > 0:
-		sprite.flip_h = true
-	elif direction.x < 0:
-		sprite.flip_h = false
-	
 	match state:
 		GRABBED:
 			grabbedState(delta)
@@ -114,10 +207,11 @@ func _physics_process(delta: float) -> void:
 	match state:
 		EAT:
 			eatState()
+	
 
 func idleState(desiredDelta: float):
 	if not is_on_floor():
-		if grounded:
+		if grounded == true:
 			grounded = false
 		velocity += get_gravity() * 2 * desiredDelta
 		if speed > 0:
@@ -126,14 +220,16 @@ func idleState(desiredDelta: float):
 			speed = speed * 1.05
 	else:
 		if grounded == false:
-			grounded = true
+			velocity = Vector2(0, 0)
 			speed = 0
-	
+			direction = Vector2(0, 0)
+			grounded = true
+			
 	var collision = move_and_collide(direction * speed * desiredDelta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
-		
 	move_and_slide()
+	
 
 func grabbedState(desiredDelta: float):
 	#Make pet attach to cursor
@@ -144,19 +240,18 @@ func grabbedState(desiredDelta: float):
 	if speed >= maxSpeed:
 		speed = maxSpeed
 	else:
-		speed = position.distance_to(get_global_mouse_position()) * speedMultiplier
+		if round(position.distance_to(get_global_mouse_position())) == 0:
+			speed = 0
+		else:
+			speed = position.distance_to(get_global_mouse_position()) * speedMultiplier
 	
 	var collision = move_and_collide(direction * speed * desiredDelta)
 	if collision:
 		direction = direction.bounce(collision.get_normal())
-	
-	move_and_slide()
 
 func wanderState():
-	direction = Vector2(10 * wanderDirection, 0)
-	speed = randf_range(15, 35)
-	
-	move_and_slide()
+	direction = Vector2(wanderDirection, 0)
+	speed = randf_range(150, 250)
 
 func jumpState():
 	if isJumping:
@@ -164,7 +259,6 @@ func jumpState():
 		speed = randf_range(30, 50)
 		isJumping = false
 		_on_jump_complete()
-	move_and_slide()
 
 func eatState():
 	if target:
@@ -189,7 +283,7 @@ func eatState():
 		tongue.visible = false
 		tongue_end.visible = false
 		state = IDLE
-		
+		lastState = EAT
 func set_tongue_passthrough():
 	tongue_polygon.polygon.set(0 , Vector2(frog.position.x, frog.position.y))
 	tongue_polygon.polygon.set(1 , Vector2(frog.position.x, frog.position.y))

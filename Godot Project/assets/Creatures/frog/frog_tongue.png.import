@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx85bcewf1klk"
-path="res://.godot/imported/grasshopper.png-5b0a112789b018eb5919836dc222a219.ctex"
+uid="uid://c1norvw3kntxo"
+path="res://.godot/imported/frog_tongue.png-17373324eda21bf50572b3562d13e5f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/frog/grasshopper.png"
-dest_files=["res://.godot/imported/grasshopper.png-5b0a112789b018eb5919836dc222a219.ctex"]
+source_file="res://assets/Creatures/frog/frog_tongue.png"
+dest_files=["res://.godot/imported/frog_tongue.png-17373324eda21bf50572b3562d13e5f6.ctex"]
 
 [params]
 

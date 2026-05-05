@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://duht5gvcjode5"]
 
 [ext_resource type="Script" uid="uid://b15xdh1c26xsb" path="res://scripts/grasshopper.gd" id="1_q5ixm"]
-[ext_resource type="Texture2D" uid="uid://bx85bcewf1klk" path="res://assets/frog/grasshopper.png" id="1_qhbux"]
+[ext_resource type="Texture2D" uid="uid://bx85bcewf1klk" path="res://assets/Creatures/grasshopper.png" id="1_qhbux"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_q5ixm"]
+
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dtxpy"]
 animations = [{

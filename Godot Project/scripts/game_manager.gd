@@ -14,7 +14,6 @@ func _ready() -> void:
 	_MainWindow.borderless = true
 	_MainWindow.always_on_top = true
 	_MainWindow.unfocusable = true
-	#_MainWindow.transient_to_focused = true
 	_MainWindow.transient = true
 	_MainWindow.minimize_disabled = true
 	_MainWindow.maximize_disabled = true

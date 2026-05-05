@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dukbig2g8aq6a"
-path="res://.godot/imported/frog_sheet.png-ac604183a19af61149ed0e6f87f50f1f.ctex"
+uid="uid://dqwpv8npagbtn"
+path="res://.godot/imported/ball.png-e33179480897b4014383a9d0701945eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/frog/frog_sheet.png"
-dest_files=["res://.godot/imported/frog_sheet.png-ac604183a19af61149ed0e6f87f50f1f.ctex"]
+source_file="res://assets/Objects/ball.png"
+dest_files=["res://.godot/imported/ball.png-e33179480897b4014383a9d0701945eb.ctex"]
 
 [params]
 

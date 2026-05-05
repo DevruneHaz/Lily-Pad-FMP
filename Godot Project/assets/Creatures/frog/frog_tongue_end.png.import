@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cejkbe23o3kg7"
-path="res://.godot/imported/dog.png-d895903a59e948527bd96ef374cb0bf7.ctex"
+uid="uid://djyb5jtwpsdtq"
+path="res://.godot/imported/frog_tongue_end.png-bf83a0a9a93620578c6afbf7abe3c05b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/frog/dog.png"
-dest_files=["res://.godot/imported/dog.png-d895903a59e948527bd96ef374cb0bf7.ctex"]
+source_file="res://assets/Creatures/frog/frog_tongue_end.png"
+dest_files=["res://.godot/imported/frog_tongue_end.png-bf83a0a9a93620578c6afbf7abe3c05b.ctex"]
 
 [params]
 

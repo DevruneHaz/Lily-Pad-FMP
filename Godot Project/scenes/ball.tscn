@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dwbjtt1xlp0gh"]
 
 [ext_resource type="Script" uid="uid://bl4wf4d112vyj" path="res://scripts/ball.gd" id="1_f7cbr"]
-[ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/frog/ball.png" id="2_gmowd"]
+[ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/Objects/ball.png" id="2_gmowd"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_qjqk5"]
+
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qjqk5"]
 bounce = 0.55
