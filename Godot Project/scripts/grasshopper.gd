@@ -18,6 +18,7 @@ var justEaten: bool = false
 
 enum {
 	IDLE,
+	GRABBED,
 	JUMP,
 	EATEN
 }

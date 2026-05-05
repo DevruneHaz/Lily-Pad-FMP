@@ -20,6 +20,7 @@ var grounded: bool
 var grabbed: bool
 var startGrabbing: bool
 var grabPoint: Vector2
+var interacted: bool
 
 func _ready() -> void:
 	# Set the anchor mode to "Fixed top-left"
@@ -62,6 +63,13 @@ func _input(event):
 			
 		if event.is_action_released("left_click"):
 			grabbed = false
+			
+		if event.is_action_pressed("right_click"):
+			print("Interacting ", focus)
+			interacted = true
+			
+		if event.is_action_released("right_click"):
+			interacted = false
 
 
 func _on_mouse_entered() -> void:
