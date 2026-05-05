@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bxwja6688xpcp"]
+
+[ext_resource type="Texture2D" uid="uid://brybii36ymbnd" path="res://assets/book_item.png" id="1_ble1a"]
+[ext_resource type="Script" uid="uid://t4d3baxvhuxu" path="res://scenes/book.gd" id="1_sm5br"]
+[ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_3wpgy"]
+[ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/grabbing.tscn" id="2_8uccb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wpgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ble1a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ble1a"]
+size = Vector2(108, 144)
+
+[node name="Book" type="CharacterBody2D" unique_id=1578678898]
+top_level = true
+script = ExtResource("1_sm5br")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1998728698]
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_3wpgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2082137526]
+shape = SubResource("RectangleShape2D_ble1a")
+
+[node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("2_8uccb")]
+
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_3wpgy")]
+focus = NodePath("..")
+focusSize = Vector2(32, 32)
+sprite = NodePath("../AnimatedSprite2D")

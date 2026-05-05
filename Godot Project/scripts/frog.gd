@@ -16,10 +16,10 @@ const tongueRenderer = preload("uid://cyfbgcqqn2fdm")
 
 enum {
 	IDLE,
+	GRABBED,
 	WANDER,
 	JUMP,
-	EAT,
-	GRABBED
+	EAT
 }
 var state = IDLE
 
@@ -40,6 +40,7 @@ var eating: bool
 func _ready():
 	sprite.play()
 	idle_timer.start()
+
 
 func _on_idle_timer_timeout() -> void:
 	if game_manager.grassHoppers.is_empty():
@@ -74,6 +75,9 @@ func _on_wander_timer_timeout() -> void:
 	state = IDLE
 
 func _process(_delta: float) -> void:
+	grabbing()
+			
+func grabbing():
 	if state != EAT:
 		grabbed = renderer.grabbed
 		if grabbed == true and startGrabbing == false:
@@ -95,9 +99,9 @@ func _physics_process(delta: float) -> void:
 	elif direction.x < 0:
 		sprite.flip_h = false
 	
-	match state:
-		GRABBED:
-			grabbedState(delta)
+	#match state:
+		#GRABBED:
+			#grabbedState(delta)
 	
 	match state:
 		IDLE:

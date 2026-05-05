@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bqwgrbsln5qpu"]
+
+[ext_resource type="Script" uid="uid://tguy6utt7v7q" path="res://scripts/gui.gd" id="1_33gi4"]
+[ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_e6al0"]
+[ext_resource type="Texture2D" uid="uid://bud0ic5uytvsk" path="res://assets/book.png" id="3_33gi4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfjlu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_33gi4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Book GUI" type="Node2D" unique_id=487950005]
+scale = Vector2(6, 6)
+script = ExtResource("1_33gi4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1685097177]
+sprite_frames = SubResource("SpriteFrames_jfjlu")
+
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_e6al0")]
+focus = NodePath("..")
+focusSize = Vector2(480, 314)
+sprite = NodePath("..")

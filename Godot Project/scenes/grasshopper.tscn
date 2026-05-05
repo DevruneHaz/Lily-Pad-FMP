@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b15xdh1c26xsb" path="res://scripts/grasshopper.gd" id="1_q5ixm"]
 [ext_resource type="Texture2D" uid="uid://bx85bcewf1klk" path="res://assets/frog/grasshopper.png" id="1_qhbux"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_q5ixm"]
+[ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/grabbing.tscn" id="3_dtxpy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dtxpy"]
 animations = [{
@@ -33,11 +34,6 @@ sprite_frames = SubResource("SpriteFrames_dtxpy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=270480576]
 shape = SubResource("RectangleShape2D_muwyl")
 
-[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_q5ixm")]
-focus = NodePath("..")
-focusSize = Vector2(32, 16)
-sprite = NodePath("../AnimatedSprite2D")
-
 [node name="JumpTimer" type="Timer" parent="." unique_id=43467594]
 wait_time = 0.5
 one_shot = true
@@ -47,5 +43,13 @@ autostart = true
 
 [node name="EatCollisionShape" type="CollisionShape2D" parent="EatArea" unique_id=530054247]
 shape = SubResource("RectangleShape2D_muwyl")
+
+[node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("3_dtxpy")]
+position = Vector2(0, 6)
+
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_q5ixm")]
+focus = NodePath("..")
+focusSize = Vector2(32, 16)
+sprite = NodePath("../AnimatedSprite2D")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

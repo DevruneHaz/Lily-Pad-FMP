@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bl4wf4d112vyj" path="res://scripts/ball.gd" id="1_f7cbr"]
 [ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/frog/ball.png" id="2_gmowd"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_qjqk5"]
+[ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/grabbing.tscn" id="3_4dx81"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qjqk5"]
 bounce = 0.55
@@ -21,6 +22,8 @@ texture = ExtResource("2_gmowd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=849297686]
 shape = SubResource("CircleShape2D_gmowd")
+
+[node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("3_4dx81")]
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_qjqk5")]
 focus = NodePath("..")

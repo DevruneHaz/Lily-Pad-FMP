@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bbned4mavy54" path="res://scenes/game_manager.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bewpnxhm5e72s" path="res://scenes/frog.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crejydxdb4pwp" path="res://scenes/border.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bxwja6688xpcp" path="res://scenes/book.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dwbjtt1xlp0gh" path="res://scenes/ball.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://duht5gvcjode5" path="res://scenes/grasshopper.tscn" id="5_iywne"]
 
@@ -35,18 +36,15 @@ collision_layer = 4294967295
 collision_mask = 4294967295
 direction = 4
 
-[node name="Frog" parent="." unique_id=726386839 instance=ExtResource("1_uwrxv")]
-unique_name_in_owner = true
-position = Vector2(1020, 145)
-
 [node name="Ball" parent="." unique_id=1924050604 instance=ExtResource("4_lbhrr")]
 position = Vector2(1560, 2)
 
+[node name="Book" parent="." unique_id=1578678898 instance=ExtResource("4_iywne")]
+position = Vector2(819, 283)
+
 [node name="Grasshopper" parent="." unique_id=1830881078 instance=ExtResource("5_iywne")]
-position = Vector2(943, 741)
+position = Vector2(462, 343)
 
-[node name="Grasshopper2" parent="." unique_id=1616309357 instance=ExtResource("5_iywne")]
-position = Vector2(1618, 411)
-
-[node name="Grasshopper3" parent="." unique_id=646645308 instance=ExtResource("5_iywne")]
-position = Vector2(593, 403)
+[node name="Frog" parent="." unique_id=726386839 instance=ExtResource("1_uwrxv")]
+unique_name_in_owner = true
+position = Vector2(1134, 450)
