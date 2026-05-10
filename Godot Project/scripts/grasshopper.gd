@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 @export var sprite: Node2D
 @onready var jump_timer: Timer = $JumpTimer
-@onready var game_manager: Node = %GameManager
+@onready var game_manager: Node = GameManager
 @onready var grasshopper: CharacterBody2D = $"."
 @onready var eat_area: Area2D = $EatArea
-@onready var frog: CharacterBody2D = %Frog
 const JUMP_VELOCITY = -400.0
+@onready var frog: CharacterBody2D = Frog
 var direction: Vector2
 var speed: float
 var grounded

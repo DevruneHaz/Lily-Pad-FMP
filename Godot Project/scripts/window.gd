@@ -20,7 +20,7 @@ var grounded: bool
 var grabbed: bool
 var startGrabbing: bool
 var grabPoint: Vector2
-var interacted: bool
+var interacted: bool = false
 
 func _ready() -> void:
 	# Set the anchor mode to "Fixed top-left"

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var game_manager: Node = %GameManager
+@onready var game_manager: Node = GameManager
 @onready var frog: CharacterBody2D = $"."
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var renderer: Window = $Renderer
@@ -19,6 +19,7 @@ enum {
 	WANDER,
 	JUMP,
 	EAT,
+	INTERACT,
 	GRABBED
 }
 var state = IDLE
@@ -36,11 +37,13 @@ var jumpDirection: int = 1
 var isJumping: bool = false
 var target: Node2D
 var eating: bool
-
+var interact: bool
+var justInteracted: bool
 
 func _ready():
 	sprite.play()
 	idle_timer.start()
+	frogTongueRenderer.visible = false
 
 func animate():
 	if state == IDLE:
@@ -172,9 +175,23 @@ func _on_wander_timer_timeout() -> void:
 
 func _process(_delta: float) -> void:
 	animate()
-	
 	if state != EAT:
 		grabbed = renderer.grabbed
+		interact = renderer.interacted
+		
+		if interact == true:
+			justInteracted = true
+			lastState = state
+			state = INTERACT
+			idle_timer.stop()
+			wander_timer.stop()
+			sprite.animation = "Interact"
+		elif interact == false and justInteracted == true:
+			justInteracted = false
+			lastState = state
+			state = IDLE
+			idle_timer.start()
+		
 		if grabbed == true and startGrabbing == false:
 			lastState = state
 			state = GRABBED
@@ -182,8 +199,8 @@ func _process(_delta: float) -> void:
 			wander_timer.stop()
 			startGrabbing = true
 		elif grabbed == false and startGrabbing == true:
+			lastState = state
 			state = IDLE
-			lastState = GRABBED
 			idle_timer.start()
 			startGrabbing = false
 
@@ -207,7 +224,14 @@ func _physics_process(delta: float) -> void:
 	match state:
 		EAT:
 			eatState()
-	
+	var pushForce = 10000
+	if self.move_and_slide(): # true if collided
+		for i in self.get_slide_collision_count():
+			var col = self.get_slide_collision(i)
+			if col.get_collider() is RigidBody2D:
+				col.get_collider().apply_force(col.get_normal() * -pushForce)
+			elif col.get_collider() is CharacterBody2D:
+				col.get_collider().velocity = (col.get_normal() * -100)
 
 func idleState(desiredDelta: float):
 	if not is_on_floor():

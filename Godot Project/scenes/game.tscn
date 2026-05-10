@@ -1,16 +1,11 @@
 [gd_scene format=3 uid="uid://c66f2tiagg1sr"]
 
-[ext_resource type="PackedScene" uid="uid://bbned4mavy54" path="res://scenes/game_manager.tscn" id="1_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://bewpnxhm5e72s" path="res://scenes/frog.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://crejydxdb4pwp" path="res://scenes/border.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bxwja6688xpcp" path="res://scenes/book.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dwbjtt1xlp0gh" path="res://scenes/ball.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://duht5gvcjode5" path="res://scenes/grasshopper.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=2032547942]
-
-[node name="GameManager" parent="." unique_id=1280244917 instance=ExtResource("1_lnu2h")]
-unique_name_in_owner = true
 
 [node name="Border1" parent="." unique_id=1741348991 instance=ExtResource("2_yqjtg")]
 position = Vector2(235, 401)
@@ -43,8 +38,4 @@ position = Vector2(1560, 2)
 position = Vector2(819, 283)
 
 [node name="Grasshopper" parent="." unique_id=1830881078 instance=ExtResource("5_iywne")]
-position = Vector2(462, 343)
-
-[node name="Frog" parent="." unique_id=726386839 instance=ExtResource("1_uwrxv")]
-unique_name_in_owner = true
-position = Vector2(1134, 450)
+position = Vector2(308, 289)

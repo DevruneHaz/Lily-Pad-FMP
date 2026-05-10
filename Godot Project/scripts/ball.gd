@@ -1,9 +1,14 @@
 extends RigidBody2D
 
-@onready var game_manager: Node = %GameManager
 var speed: float
 var maxSpeed: int = 355000
 var direction: Vector2
+
+enum {
+	IDLE,
+	GRABBED
+}
+var state = IDLE
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

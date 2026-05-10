@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bxwja6688xpcp"]
 
-[ext_resource type="Texture2D" uid="uid://brybii36ymbnd" path="res://assets/book_item.png" id="1_ble1a"]
-[ext_resource type="Script" uid="uid://t4d3baxvhuxu" path="res://scenes/book.gd" id="1_sm5br"]
+[ext_resource type="Texture2D" uid="uid://brybii36ymbnd" path="res://assets/GUI/book_item.png" id="1_ble1a"]
+[ext_resource type="Script" uid="uid://t4d3baxvhuxu" path="res://scripts/book.gd" id="1_sm5br"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_3wpgy"]
 [ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/grabbing.tscn" id="2_8uccb"]
+[ext_resource type="PackedScene" uid="uid://bqwgrbsln5qpu" path="res://scenes/book_gui.tscn" id="4_01hes"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3wpgy"]
 animations = [{
@@ -31,6 +32,9 @@ sprite_frames = SubResource("SpriteFrames_3wpgy")
 shape = SubResource("RectangleShape2D_ble1a")
 
 [node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("2_8uccb")]
+
+[node name="Book GUI" parent="." unique_id=487950005 instance=ExtResource("4_01hes")]
+position = Vector2(254.83734, 148.8836)
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_3wpgy")]
 focus = NodePath("..")

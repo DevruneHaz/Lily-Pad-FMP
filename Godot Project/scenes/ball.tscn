@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="2_qjqk5"]
 [ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/grabbing.tscn" id="3_4dx81"]
 
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qjqk5"]
 bounce = 0.55
 

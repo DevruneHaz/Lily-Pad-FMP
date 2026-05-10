@@ -76,27 +76,31 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4j6kb"]
 atlas = ExtResource("2_rq8tc")
-region = Rect2(0, 240, 48, 48)
+region = Rect2(0, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blxar"]
 atlas = ExtResource("2_rq8tc")
-region = Rect2(48, 240, 48, 48)
+region = Rect2(48, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r6508"]
 atlas = ExtResource("2_rq8tc")
-region = Rect2(96, 240, 48, 48)
+region = Rect2(96, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyg7h"]
 atlas = ExtResource("2_rq8tc")
-region = Rect2(144, 240, 48, 48)
+region = Rect2(144, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gihr1"]
 atlas = ExtResource("2_rq8tc")
-region = Rect2(192, 240, 48, 48)
+region = Rect2(192, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88ml8"]
 atlas = ExtResource("2_rq8tc")
-region = Rect2(240, 240, 48, 48)
+region = Rect2(240, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkly0"]
+atlas = ExtResource("2_rq8tc")
+region = Rect2(192, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_56thx"]
 atlas = ExtResource("2_rq8tc")
@@ -250,6 +254,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_pkly0")
+}],
+"loop": true,
+"name": &"Interact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_56thx")
 }, {
 "duration": 1.0,
@@ -318,8 +330,7 @@ script = ExtResource("1_qyo2l")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215535128]
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_pkly0")
-animation = &"Walk_Right"
-frame_progress = 0.75961745
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
 shape = SubResource("CircleShape2D_qyo2l")
@@ -352,7 +363,6 @@ rotation = 1.5707964
 texture = ExtResource("5_4ifle")
 
 [node name="Renderer" parent="Tongue" unique_id=667398168 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_rq8tc")]
-visible = false
 focus = NodePath("../..")
 focusSize = Vector2(512, 512)
 sprite = NodePath("../TongueEnd")
