@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/Objects/ball.png" id="5_mkum5"]
 [ext_resource type="PackedScene" uid="uid://duht5gvcjode5" path="res://scenes/grasshopper.tscn" id="6_hx8pl"]
 [ext_resource type="Texture2D" uid="uid://bx85bcewf1klk" path="res://assets/Creatures/grasshopper.png" id="7_4m0ia"]
+[ext_resource type="PackedScene" uid="uid://dyh1sy23f4kl5" path="res://scenes/exit_button.tscn" id="9_4m0ia"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jfjlu"]
 animations = [{
@@ -56,6 +57,9 @@ position = Vector2(442.5, 316.5)
 
 [node name="Spawn Button8" parent="." unique_id=1569923370 instance=ExtResource("4_jfjlu")]
 position = Vector2(577.5, 316.5)
+
+[node name="Exit Button" parent="." unique_id=2068968814 instance=ExtResource("9_4m0ia")]
+position = Vector2(0, -435)
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_e6al0")]
 unfocusable = true

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dyh1sy23f4kl5"]
+
+[ext_resource type="Script" uid="uid://dmh3iswelijm7" path="res://scripts/exit_button.gd" id="1_jrkvh"]
+[ext_resource type="Texture2D" uid="uid://d10mylgryonqj" path="res://assets/GUI/exit_button.png" id="2_jrkvh"]
+[ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/renderer.tscn" id="3_lafu0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghwsi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jrkvh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Exit Button" type="Area2D" unique_id=1447677838]
+top_level = true
+script = ExtResource("1_jrkvh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=933209787]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ghwsi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=598166790]
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_lafu0")]
+exclusive = true
+focus = NodePath("..")
+focusSize = Vector2(23, 23)
+sprite = NodePath("../AnimatedSprite2D")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

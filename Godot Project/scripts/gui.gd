@@ -9,8 +9,8 @@ func _ready() -> void:
 	position = GameManager.screenCentre
 	renderer.visible = false
 
-func _process(_delta: float) -> void:
-	interact = renderer.interacted
+#func _process(_delta: float) -> void:
+	#interact = renderer.interacted
 	#if interact == true:
 		#renderer.visible = false
 	#else:

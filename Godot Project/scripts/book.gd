@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var gui: Node2D = $"Book GUI"
 @onready var renderer: Window = $Renderer
 var interact: bool = false
+var guiOpen: bool = false
 
 enum {
 	IDLE,
@@ -19,9 +20,8 @@ var justHitFloor: bool
 func _process(_delta: float) -> void:
 	interact = renderer.interacted
 	if interact == true:
-		gui.renderer.visible = true
-#	else:
-#		gui.renderer.visible = false
+		open_gui()
+		renderer.interacted = false
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -64,3 +64,16 @@ func rotationState(desiredDelta):
 	if not justHitFloor:
 		var angleTo = transform.x.angle_to(direction)
 		rotate(sign(angleTo) * min(desiredDelta * speed, abs(angleTo)))
+
+func open_gui():
+	if guiOpen == false:
+		gui.renderer.visible = true
+		gui.visible = true
+		guiOpen = true
+
+func close_gui():
+	if guiOpen == true:
+		gui.renderer.visible = false
+		gui.visible = false
+		guiOpen = false
+	

@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @export var sprite: Node2D
-@onready var jump_timer: Timer = $JumpTimer
 @onready var game_manager: Node = GameManager
 @onready var grasshopper: CharacterBody2D = $"."
 @onready var eat_area: Area2D = $EatArea

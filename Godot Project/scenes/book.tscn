@@ -34,6 +34,7 @@ shape = SubResource("RectangleShape2D_ble1a")
 [node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("2_8uccb")]
 
 [node name="Book GUI" parent="." unique_id=487950005 instance=ExtResource("4_01hes")]
+visible = false
 position = Vector2(254.83734, 148.8836)
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_3wpgy")]

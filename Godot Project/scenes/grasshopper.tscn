@@ -34,11 +34,6 @@ sprite_frames = SubResource("SpriteFrames_dtxpy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=270480576]
 shape = SubResource("RectangleShape2D_muwyl")
 
-[node name="JumpTimer" type="Timer" parent="." unique_id=43467594]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
 [node name="EatArea" type="Area2D" parent="." unique_id=539714475]
 
 [node name="EatCollisionShape" type="CollisionShape2D" parent="EatArea" unique_id=530054247]
@@ -51,5 +46,3 @@ position = Vector2(0, 6)
 focus = NodePath("..")
 focusSize = Vector2(32, 16)
 sprite = NodePath("../AnimatedSprite2D")
-
-[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
