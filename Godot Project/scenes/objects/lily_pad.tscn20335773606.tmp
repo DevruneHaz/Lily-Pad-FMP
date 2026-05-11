@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bunftv3i85b11"]
+
+[ext_resource type="Texture2D" uid="uid://b3gmwa3pi6xrf" path="res://assets/objects/lilypad.png" id="1_7fe25"]
+[ext_resource type="Script" uid="uid://dxcyglcop70ek" path="res://scripts/objects/lily_pad.gd" id="1_kyqs1"]
+[ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/misc/grabbing.tscn" id="2_kyqs1"]
+[ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/misc/renderer.tscn" id="3_5pq21"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7tefk"]
+radius = 18.0
+height = 204.0
+
+[node name="Lily Pad" type="CharacterBody2D" unique_id=717174440]
+top_level = true
+script = ExtResource("1_kyqs1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=120506670]
+position = Vector2(-18, 174)
+scale = Vector2(6, 6)
+texture = ExtResource("1_7fe25")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450582041]
+position = Vector2(-18, 288)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7tefk")
+
+[node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("2_kyqs1")]
+
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_5pq21")]
+focus = NodePath("..")
+focusSize = Vector2(40, 64)
+sprite = NodePath("../Sprite2D")
+offset = Vector2(-18, 174)

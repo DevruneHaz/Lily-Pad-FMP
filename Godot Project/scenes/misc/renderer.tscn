@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cyfbgcqqn2fdm"]
+
+[ext_resource type="Script" uid="uid://cywvp17fho44i" path="res://scripts/misc/window.gd" id="1_hrthm"]
+
+[node name="Renderer" type="Window" unique_id=1640452048]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4293918720
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+unresizable = true
+borderless = true
+always_on_top = true
+transparent = true
+sharp_corners = true
+script = ExtResource("1_hrthm")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1095323919]
+visibility_layer = 0
+texture_filter = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
