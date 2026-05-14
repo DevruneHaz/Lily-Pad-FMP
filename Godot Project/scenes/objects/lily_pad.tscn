@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bunftv3i85b11"]
 
-[ext_resource type="Texture2D" uid="uid://b3gmwa3pi6xrf" path="res://assets/objects/lilypad.png" id="1_7fe25"]
+[ext_resource type="Texture2D" uid="uid://b3gmwa3pi6xrf" path="res://assets/Objects/lilypad.png" id="1_7fe25"]
 [ext_resource type="Script" uid="uid://dxcyglcop70ek" path="res://scripts/objects/lily_pad.gd" id="1_kyqs1"]
 [ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/misc/grabbing.tscn" id="2_kyqs1"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/misc/renderer.tscn" id="3_5pq21"]
@@ -39,7 +39,6 @@ shape = SubResource("CapsuleShape2D_kyqs1")
 [node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("2_kyqs1")]
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_5pq21")]
-always_on_top = false
 focus = NodePath("..")
 focusSize = Vector2(40, 64)
 sprite = NodePath("../Sprite2D")

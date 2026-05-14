@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var renderer: Window = $Renderer
 var interact: bool = false
 var guiOpen: bool = false
+var pushable: bool = true
 
 enum {
 	IDLE,

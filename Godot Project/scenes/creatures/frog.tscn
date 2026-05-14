@@ -1,10 +1,33 @@
 [gd_scene format=3 uid="uid://bewpnxhm5e72s"]
 
 [ext_resource type="Script" uid="uid://csbh4vfr7uyfh" path="res://scripts/creatures/frog.gd" id="1_dbfxw"]
+[ext_resource type="Texture2D" uid="uid://d100ne6g37lq5" path="res://assets/Creatures/frog/Pallettes/frog_pallette.png" id="2_n7xjk"]
+[ext_resource type="Shader" uid="uid://bsedms0wwkxtk" path="res://scenes/creatures/frog.gdshader" id="2_qnbes"]
 [ext_resource type="Texture2D" uid="uid://dukbig2g8aq6a" path="res://assets/Creatures/frog/frog_sheet.png" id="2_uogx6"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/misc/renderer.tscn" id="3_qnbes"]
 [ext_resource type="Texture2D" uid="uid://c1norvw3kntxo" path="res://assets/Creatures/frog/frog_tongue.png" id="4_n7xjk"]
 [ext_resource type="Texture2D" uid="uid://djyb5jtwpsdtq" path="res://assets/Creatures/frog/frog_tongue_end.png" id="5_8h13v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uogx6"]
+shader = ExtResource("2_qnbes")
+shader_parameter/primary_original_0 = Color(0.6, 0.8980392, 0.3137255, 1)
+shader_parameter/primary_original_1 = Color(0.41568628, 0.74509805, 0.1882353, 1)
+shader_parameter/primary_original_2 = Color(0.3254902, 0.6392157, 0.11372549, 1)
+shader_parameter/primary_original_3 = Color(0.26666668, 0.5529412, 0.07450981, 1)
+shader_parameter/primary_original_4 = Color(0.21176471, 0.45882353, 0.050980393, 1)
+shader_parameter/primary_replace_0 = Color(0, 0, 0, 1)
+shader_parameter/primary_replace_1 = Color(0, 0, 0, 1)
+shader_parameter/primary_replace_2 = Color(0, 0, 0, 1)
+shader_parameter/primary_replace_3 = Color(0, 0, 0, 1)
+shader_parameter/primary_replace_4 = Color(0, 0, 0, 1)
+shader_parameter/secondary_original_0 = Color(0.9254902, 0.9019608, 0.4509804, 1)
+shader_parameter/secondary_original_1 = Color(0.75686276, 0.74509805, 0.4, 1)
+shader_parameter/secondary_original_2 = Color(0.627451, 0.61960787, 0.35686275, 1)
+shader_parameter/secondary_original_3 = Color(0.5294118, 0.5254902, 0.28235295, 1)
+shader_parameter/secondary_replace_0 = Color(0, 0, 0, 1)
+shader_parameter/secondary_replace_1 = Color(0, 0, 0, 1)
+shader_parameter/secondary_replace_2 = Color(0, 0, 0, 1)
+shader_parameter/secondary_replace_3 = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybftx"]
 atlas = ExtResource("2_uogx6")
@@ -326,18 +349,22 @@ radius = 70.0
 top_level = true
 input_pickable = true
 script = ExtResource("1_dbfxw")
+colourPallette = ExtResource("2_n7xjk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215535128]
+material = SubResource("ShaderMaterial_uogx6")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_pkly0")
-animation = &"Idle"
+animation = &"Walk_Right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
+visible = false
 shape = SubResource("CircleShape2D_qyo2l")
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_qnbes")]
+position = Vector2i(0, 0)
 focus = NodePath("..")
-focusSize = Vector2(48, 48)
+focusSize = Vector2(32, 32)
 sprite = NodePath("../AnimatedSprite2D")
 
 [node name="IdleTimer" type="Timer" parent="." unique_id=1906477383]
@@ -364,6 +391,7 @@ rotation = 1.5707964
 texture = ExtResource("5_8h13v")
 
 [node name="Renderer" parent="Tongue" unique_id=667398168 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_qnbes")]
+position = Vector2i(0, 0)
 focus = NodePath("../..")
 focusSize = Vector2(1024, 1024)
 sprite = NodePath("../TongueEnd")

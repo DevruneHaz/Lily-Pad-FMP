@@ -8,6 +8,10 @@ var interact: bool
 func _ready() -> void:
 	position = GameManager.screenCentre
 	renderer.visible = false
+	
+#	for button in spawnButtons:
+#		if button == self:
+#			print(spawnButtons.find(self))
 
 #func _process(_delta: float) -> void:
 	#interact = renderer.interacted

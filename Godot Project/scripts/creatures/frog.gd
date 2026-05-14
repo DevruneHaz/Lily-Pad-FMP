@@ -13,6 +13,7 @@ extends CharacterBody2D
 const tongueRenderer = preload("uid://cyfbgcqqn2fdm")
 @onready var frogTongueRenderer: Window = $Tongue/Renderer
 @onready var tongue_polygon: Polygon2D = $Tongue/TonguePolygon
+var pushable: bool = false
 
 enum {
 	IDLE,
@@ -21,6 +22,7 @@ enum {
 	EAT,
 	INTERACT,
 	LILYPAD,
+	MUSHROOM,
 	GRABBED
 }
 var state = IDLE
@@ -41,8 +43,31 @@ var eating: bool
 var interact: bool
 var justInteracted: bool
 var lilypad: Node2D
+var attached: bool
+var onMushroom: bool = false
+var mushroom: Node2D
+
+@export var colourPallette: Texture2D
+var pallette: Image
+var primaryColour: int = 0
+var secondaryColour: int = 0
+
+
+func replaceColours():
+	primaryColour = 0
+	secondaryColour = 0
+	pallette = colourPallette.get_image()
+	
+	while primaryColour != 5:
+		sprite.material.set_shader_parameter(("primary_replace_" + str(primaryColour)), pallette.get_pixel(primaryColour, 0))
+		primaryColour = primaryColour + 1
+		
+	while secondaryColour != 4:
+		sprite.material.set_shader_parameter(("secondary_replace_" + str(secondaryColour)), pallette.get_pixel((secondaryColour + 5), 0))
+		secondaryColour = secondaryColour + 1
 
 func _ready():
+	replaceColours()
 	sprite.play()
 	idle_timer.start()
 	frogTongueRenderer.visible = false
@@ -174,9 +199,14 @@ func _on_wander_timer_timeout() -> void:
 
 func _process(_delta: float) -> void:
 	animate()
+	
+	if state == MUSHROOM:
+		position.x = mushroom.global_position.x
+		
 	if state != EAT:
 		grabbed = renderer.grabbed
 		interact = renderer.interacted
+		
 		
 		if interact == true:
 			justInteracted = true
@@ -197,6 +227,8 @@ func _process(_delta: float) -> void:
 			idle_timer.stop()
 			wander_timer.stop()
 			startGrabbing = true
+			detachFromLilypad()
+			stepOffMushroom()
 		elif grabbed == false and startGrabbing == true:
 			lastState = state
 			state = IDLE
@@ -228,6 +260,10 @@ func _physics_process(delta: float) -> void:
 		EAT:
 			eatState()
 			
+	match state:
+		MUSHROOM:
+			mushroomState(delta)
+			
 	if state != LILYPAD:
 		var pushForce = 10000
 		if self.move_and_slide(): # true if collided
@@ -236,7 +272,8 @@ func _physics_process(delta: float) -> void:
 				if col.get_collider() is RigidBody2D:
 					col.get_collider().apply_force(col.get_normal() * -pushForce)
 				elif col.get_collider() is CharacterBody2D:
-					col.get_collider().velocity = (col.get_normal() * -100)
+					if col.get_collider().pushable == true:
+						col.get_collider().velocity = (col.get_normal() * -100)
 
 func idleState(desiredDelta: float):
 	if not is_on_floor():
@@ -303,7 +340,6 @@ func eatState():
 		tongue.set_point_position(0, tongue.to_local(self.global_position))
 		tongue.set_point_position(1, tongue.to_local(target.global_position))
 		tongue_end.position = (tongue.to_local(target.global_position))
-		#set_tongue_passthrough()
 		
 	else:
 		idle_timer.wait_time = randf_range(1.5, 3)
@@ -322,11 +358,59 @@ func set_tongue_passthrough():
 	frogTongueRenderer.mouse_passthrough_polygon = tongue_polygon.polygon
 
 func lilypadState():
-	global_position = lilypad.attach_area.global_position + Vector2(0, -10)
+	if lilypad != null:
+		global_position = lilypad.attach_area.global_position + Vector2(0, -10)
+		renderer.grab_focus()
+	else:
+		detachFromLilypad()
 
-func attachToLilypad(attach: Node2D):
-	state = LILYPAD
-	lilypad = attach
+func attachToLilypad(targetLilypad: Node2D):
+	if state != GRABBED:
+		if attached == false:
+			idle_timer.stop()
+			wander_timer.stop()
+			state = LILYPAD
+			lilypad = targetLilypad
+			attached = true
 
 func detachFromLilypad():
 	state = GRABBED
+	attached = false
+	
+func stepOnMushroom(targetMushroom: Node2D):
+	if state != GRABBED:
+		if onMushroom == false:
+			idle_timer.stop()
+			wander_timer.stop()
+			state = MUSHROOM
+			mushroom = targetMushroom
+			onMushroom = true
+	
+func mushroomState(desiredDelta):
+	if mushroom != null:
+		global_position.x = mushroom.global_position.x
+		if is_on_floor():
+			direction = Vector2(0, -50)
+			speed = randf_range(30, 50)
+	
+		elif not is_on_floor():
+			if grounded == true:
+				grounded = false
+			velocity += get_gravity() * 2 * desiredDelta
+			if speed > 0:
+				speed = speed * 0.95
+			elif speed < 0:
+				speed = speed * 1.05
+	
+		var collision = move_and_collide(direction * speed * desiredDelta)
+		if collision:
+			direction = direction.bounce(collision.get_normal())
+	
+		move_and_slide()
+	else:
+		state = IDLE
+		idle_timer.start()
+	
+func stepOffMushroom():
+	state = GRABBED
+	onMushroom = false

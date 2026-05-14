@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bahhcmekhy532"]
+
+[ext_resource type="Script" uid="uid://cq2usdpp05jl" path="res://scripts/objects/mushroom.gd" id="1_m72xo"]
+[ext_resource type="Texture2D" uid="uid://b1qc4pag6sy1m" path="res://assets/Objects/mushroom.png" id="2_m72xo"]
+[ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/misc/grabbing.tscn" id="3_lp6n4"]
+[ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/misc/renderer.tscn" id="4_5kbdk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3oyo"]
+radius = 48.0
+height = 204.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lp6n4"]
+radius = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyqs1"]
+radius = 102.0
+height = 204.0
+
+[node name="Mushroom" type="CharacterBody2D" unique_id=282107336]
+top_level = true
+script = ExtResource("1_m72xo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1298519748]
+position = Vector2(0, -120)
+scale = Vector2(6, 6)
+texture = ExtResource("2_m72xo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1878384697]
+position = Vector2(0, -66)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_j3oyo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1999265421]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_lp6n4")
+
+[node name="Attach Area" type="Area2D" parent="." unique_id=1872008550]
+position = Vector2(0, -144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attach Area" unique_id=686455517]
+shape = SubResource("CapsuleShape2D_kyqs1")
+
+[node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("3_lp6n4")]
+
+[node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("4_5kbdk")]
+focus = NodePath("..")
+focusSize = Vector2(40, 64)
+sprite = NodePath("../Sprite2D")

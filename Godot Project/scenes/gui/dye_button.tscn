@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dfe8b3snpe7jp"]
+
+[ext_resource type="Script" uid="uid://c2ujt0jrdmm21" path="res://scripts/gui/dye_button.gd" id="1_6hv20"]
+[ext_resource type="PackedScene" uid="uid://2t7bqc4etbja" path="res://scenes/gui/renderer_gui.tscn" id="2_3ygvg"]
+
+[node name="Dye Button" type="Area2D" unique_id=1447677838]
+top_level = true
+script = ExtResource("1_6hv20")
+
+[node name="Dye" type="Sprite2D" parent="." unique_id=955290425]
+top_level = true
+scale = Vector2(5, 5)
+
+[node name="Outline" type="Sprite2D" parent="Dye" unique_id=1134344941]
+visible = false
+top_level = true
+scale = Vector2(5, 5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=598166790]
+polygon = PackedVector2Array(-60, -66, 66, -66, 66, 60, -60, 60)
+
+[node name="renderer_gui" parent="." unique_id=1188532680 node_paths=PackedStringArray("polygon", "focussed") instance=ExtResource("2_3ygvg")]
+polygon = NodePath("../CollisionPolygon2D")
+focussed = [NodePath("../Dye"), NodePath("../CollisionPolygon2D"), NodePath("../Dye/Outline")]

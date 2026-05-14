@@ -6,6 +6,8 @@ var maxSpeed: int = 355000
 var direction: Vector2
 var grounded: bool
 
+var pushable: bool = true
+
 enum {
 	IDLE,
 	GRABBED
@@ -19,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	match state:
 		IDLE:
 			idleState(delta)
+	
 
 func idleState(desiredDelta: float):
 	velocity.x = velocity.x * 0.5

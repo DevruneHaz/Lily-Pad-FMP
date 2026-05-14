@@ -1,20 +1,45 @@
 [gd_scene format=3 uid="uid://bqwgrbsln5qpu"]
 
 [ext_resource type="Script" uid="uid://tguy6utt7v7q" path="res://scripts/gui/gui.gd" id="1_33gi4"]
+[ext_resource type="Texture2D" uid="uid://dvw6622jog5t0" path="res://assets/GUI/book_gui.png" id="2_7o2vn"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/misc/renderer.tscn" id="2_e6al0"]
-[ext_resource type="Texture2D" uid="uid://bud0ic5uytvsk" path="res://assets/gui/book.png" id="3_33gi4"]
 [ext_resource type="PackedScene" uid="uid://gn00wfs3en8h" path="res://scenes/objects/ball.tscn" id="4_bsd63"]
 [ext_resource type="PackedScene" uid="uid://kptt6q867kwc" path="res://scenes/gui/spawn_button.tscn" id="4_jfjlu"]
-[ext_resource type="Texture2D" uid="uid://dqwpv8npagbtn" path="res://assets/objects/ball.png" id="5_mkum5"]
+[ext_resource type="Texture2D" uid="uid://bckomyg050wia" path="res://assets/GUI/Icons/ball_icon.png" id="5_7o2vn"]
 [ext_resource type="PackedScene" uid="uid://duht5gvcjode5" path="res://scenes/creatures/grasshopper.tscn" id="6_hx8pl"]
-[ext_resource type="Texture2D" uid="uid://bx85bcewf1klk" path="res://assets/Creatures/grasshopper.png" id="7_4m0ia"]
+[ext_resource type="Texture2D" uid="uid://cj1ldoru0cmuh" path="res://assets/GUI/Icons/ball_drawing.png" id="6_xa8in"]
+[ext_resource type="Texture2D" uid="uid://c3ugf2hierc1g" path="res://assets/GUI/Icons/ball_disabled.png" id="7_goxwo"]
+[ext_resource type="PackedScene" uid="uid://bunftv3i85b11" path="res://scenes/objects/lily_pad.tscn" id="8_hl40c"]
 [ext_resource type="PackedScene" uid="uid://dyh1sy23f4kl5" path="res://scenes/gui/exit_button.tscn" id="9_4m0ia"]
+[ext_resource type="Texture2D" uid="uid://jf78yglm8aqo" path="res://assets/GUI/Icons/grasshopper_icon.png" id="9_8w0r2"]
+[ext_resource type="Texture2D" uid="uid://bw2bwpe60cm3" path="res://assets/GUI/Icons/grasshopper_drawing.png" id="10_ig4up"]
+[ext_resource type="PackedScene" uid="uid://bahhcmekhy532" path="res://scenes/objects/mushroom.tscn" id="10_v7vcn"]
+[ext_resource type="Texture2D" uid="uid://bmxketdijddpd" path="res://assets/GUI/Icons/grasshopper_disabled.png" id="11_o26ns"]
+[ext_resource type="Texture2D" uid="uid://bi31fgi012njd" path="res://assets/GUI/Icons/lillypad_icon.png" id="13_rrxrf"]
+[ext_resource type="Texture2D" uid="uid://r84dcpjktfym" path="res://assets/GUI/Icons/lillypad_drawing.png" id="14_k0nhf"]
+[ext_resource type="Texture2D" uid="uid://bjvooruiqnhl3" path="res://assets/GUI/Icons/lillypad_disabled.png" id="15_yp84t"]
+[ext_resource type="Texture2D" uid="uid://dapwrslbyckvs" path="res://assets/GUI/Icons/mushroom_icon.png" id="17_i111e"]
+[ext_resource type="Texture2D" uid="uid://dehgw1v2kmavs" path="res://assets/GUI/Icons/mushroom_drawing.png" id="18_kj4t3"]
+[ext_resource type="Texture2D" uid="uid://r8n8svnd2cf4" path="res://assets/GUI/Icons/mushroom_disabled.png" id="19_aw0di"]
+[ext_resource type="PackedScene" uid="uid://dfe8b3snpe7jp" path="res://scenes/gui/dye_button.tscn" id="21_otj3s"]
+[ext_resource type="Texture2D" uid="uid://b8201has43spl" path="res://assets/GUI/Dyes/dye_green.png" id="22_o84qr"]
+[ext_resource type="Texture2D" uid="uid://ccavsfp3mu2es" path="res://assets/GUI/Dyes/dye_green_outline.png" id="23_sfi6e"]
+[ext_resource type="Texture2D" uid="uid://d100ne6g37lq5" path="res://assets/Creatures/frog/Pallettes/frog_pallette.png" id="24_ce02b"]
+[ext_resource type="Texture2D" uid="uid://dbu0vg4owyrq1" path="res://assets/GUI/Dyes/dye_pink.png" id="25_qfn3y"]
+[ext_resource type="Texture2D" uid="uid://b8gckudw6o3s0" path="res://assets/GUI/Dyes/dye_pink_outline.png" id="26_w8g41"]
+[ext_resource type="Texture2D" uid="uid://x3mwjsku70cm" path="res://assets/Creatures/frog/Pallettes/frog_pallette_pink.png" id="27_5wjrf"]
+[ext_resource type="Texture2D" uid="uid://3dqlpswh78iq" path="res://assets/GUI/Dyes/dye_brown.png" id="28_jjsnf"]
+[ext_resource type="Texture2D" uid="uid://c6nuif68uwaur" path="res://assets/GUI/Dyes/dye_brown_outline.png" id="29_2f2ge"]
+[ext_resource type="Texture2D" uid="uid://crxlcq4qqgh4q" path="res://assets/Creatures/frog/Pallettes/frog_pallette_brown.png" id="30_emcv0"]
+[ext_resource type="Texture2D" uid="uid://b5uiq1yhci4vo" path="res://assets/GUI/Dyes/dye_red.png" id="31_vqxbi"]
+[ext_resource type="Texture2D" uid="uid://djfbht4msy8d0" path="res://assets/GUI/Dyes/dye_red_outline.png" id="32_ahhh8"]
+[ext_resource type="Texture2D" uid="uid://s330wwuatv1h" path="res://assets/Creatures/frog/Pallettes/frog_pallette_red.png" id="33_d13fm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jfjlu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_33gi4")
+"texture": ExtResource("2_7o2vn")
 }],
 "loop": true,
 "name": &"default",
@@ -24,46 +49,97 @@ animations = [{
 [node name="Book GUI" type="Node2D" unique_id=487950005 node_paths=PackedStringArray("spawnButtons")]
 top_level = true
 script = ExtResource("1_33gi4")
-spawnButtons = [NodePath("Spawn Button"), NodePath("Spawn Button2"), NodePath("Spawn Button3"), NodePath("Spawn Button4"), NodePath("Spawn Button5"), NodePath("Spawn Button6"), NodePath("Spawn Button7"), NodePath("Spawn Button8")]
+spawnButtons = [NodePath("Spawn Button"), NodePath("Spawn Button2"), NodePath("Spawn Button3"), NodePath("Spawn Button4")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1685097177]
-scale = Vector2(3, 3)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_jfjlu")
 
-[node name="Spawn Button" parent="." unique_id=1447677838 instance=ExtResource("4_jfjlu")]
-position = Vector2(169.5, 160.5)
+[node name="Spawn Button" parent="." unique_id=1447677838 node_paths=PackedStringArray("renderer") instance=ExtResource("4_jfjlu")]
+position = Vector2(120, 190)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
 type = ExtResource("4_bsd63")
-icon = ExtResource("5_mkum5")
+icon = ExtResource("5_7o2vn")
+drawing = ExtResource("6_xa8in")
+disabled = ExtResource("7_goxwo")
 limit = 6
 
-[node name="Spawn Button2" parent="." unique_id=2044845540 instance=ExtResource("4_jfjlu")]
-position = Vector2(304.5, 160.5)
+[node name="Spawn Button2" parent="." unique_id=2044845540 node_paths=PackedStringArray("renderer") instance=ExtResource("4_jfjlu")]
+position = Vector2(255, 195)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
 type = ExtResource("6_hx8pl")
-icon = ExtResource("7_4m0ia")
+icon = ExtResource("9_8w0r2")
+drawing = ExtResource("10_ig4up")
+disabled = ExtResource("11_o26ns")
 
-[node name="Spawn Button3" parent="." unique_id=202683723 instance=ExtResource("4_jfjlu")]
-position = Vector2(442.5, 160.5)
+[node name="Spawn Button3" parent="." unique_id=202683723 node_paths=PackedStringArray("renderer") instance=ExtResource("4_jfjlu")]
+position = Vector2(395, 195)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
+type = ExtResource("8_hl40c")
+icon = ExtResource("13_rrxrf")
+drawing = ExtResource("14_k0nhf")
+disabled = ExtResource("15_yp84t")
+limit = 1
 
-[node name="Spawn Button4" parent="." unique_id=242230944 instance=ExtResource("4_jfjlu")]
-position = Vector2(577.5, 160.5)
-
-[node name="Spawn Button5" parent="." unique_id=296971739 instance=ExtResource("4_jfjlu")]
-position = Vector2(169.5, 316.5)
-
-[node name="Spawn Button6" parent="." unique_id=1251723976 instance=ExtResource("4_jfjlu")]
-position = Vector2(304.5, 316.5)
-
-[node name="Spawn Button7" parent="." unique_id=1738538261 instance=ExtResource("4_jfjlu")]
-position = Vector2(442.5, 316.5)
-
-[node name="Spawn Button8" parent="." unique_id=1569923370 instance=ExtResource("4_jfjlu")]
-position = Vector2(577.5, 316.5)
+[node name="Spawn Button4" parent="." unique_id=242230944 node_paths=PackedStringArray("renderer") instance=ExtResource("4_jfjlu")]
+position = Vector2(525, 195)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
+type = ExtResource("10_v7vcn")
+icon = ExtResource("17_i111e")
+drawing = ExtResource("18_kj4t3")
+disabled = ExtResource("19_aw0di")
 
 [node name="Exit Button" parent="." unique_id=2068968814 instance=ExtResource("9_4m0ia")]
-position = Vector2(681, -432)
+position = Vector2(565, -395)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Dye Button" parent="." unique_id=509539121 node_paths=PackedStringArray("renderer") instance=ExtResource("21_otj3s")]
+position = Vector2(110, -75)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
+dye = ExtResource("22_o84qr")
+outline = ExtResource("23_sfi6e")
+colourPallette = ExtResource("24_ce02b")
+
+[node name="Dye Button2" parent="." unique_id=1690539420 node_paths=PackedStringArray("renderer") instance=ExtResource("21_otj3s")]
+position = Vector2(240, -75)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
+dye = ExtResource("25_qfn3y")
+outline = ExtResource("26_w8g41")
+colourPallette = ExtResource("27_5wjrf")
+
+[node name="Dye Button3" parent="." unique_id=1870581716 node_paths=PackedStringArray("renderer") instance=ExtResource("21_otj3s")]
+position = Vector2(385, -75)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
+dye = ExtResource("28_jjsnf")
+outline = ExtResource("29_2f2ge")
+colourPallette = ExtResource("30_emcv0")
+
+[node name="Dye Button4" parent="." unique_id=1169958391 node_paths=PackedStringArray("renderer") instance=ExtResource("21_otj3s")]
+position = Vector2(520, -75)
+collision_layer = 2
+collision_mask = 2
+renderer = NodePath("../Renderer")
+dye = ExtResource("31_vqxbi")
+outline = ExtResource("32_ahhh8")
+colourPallette = ExtResource("33_d13fm")
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("2_e6al0")]
 unfocusable = true
 focus = NodePath("..")
-focusSize = Vector2(240, 157)
+focusSize = Vector2(230, 152)
 sprite = NodePath("../AnimatedSprite2D")

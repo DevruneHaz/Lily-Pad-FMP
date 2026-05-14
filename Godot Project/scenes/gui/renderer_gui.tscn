@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://2t7bqc4etbja"]
+
+[ext_resource type="Script" uid="uid://elrqaarwi27m" path="res://scripts/gui/renderer_gui.gd" id="1_sjwlb"]
+
+[node name="renderer_gui" type="Area2D" unique_id=1188532680]
+script = ExtResource("1_sjwlb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=257689471]
+top_level = true
+scale = Vector2(11, 11)
+polygon = PackedVector2Array(-5, -5, 5, -5, 5, 5, -5, 5)

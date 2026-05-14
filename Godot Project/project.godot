@@ -79,3 +79,7 @@ common/physics_jitter_fix=0.0
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+
+[xr]
+
+shaders/enabled=true

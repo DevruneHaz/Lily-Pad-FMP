@@ -6,6 +6,7 @@ var speed: float
 var maxSpeed: int = 355000
 var direction: Vector2
 var attached: bool
+var pushable: bool = false
 
 enum {
 	IDLE,
@@ -13,29 +14,25 @@ enum {
 }
 var state = IDLE
 
+func _ready() -> void:
+	GameManager.objects.append(self)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	attach()
 	
 	match state:
 		IDLE:
 			idleState()
+			
+	match state:
+		GRABBED:
+			Frog.renderer.grab_focus()
 	
-	if self.move_and_slide(): # true if collided
-		for i in self.get_slide_collision_count():
-			var col = self.get_slide_collision(i)
-			if col.get_collider() is Frog:
-				print("GRAHHH")
-				
 func attach():
 	for overlapped_body in attach_area.get_overlapping_bodies():
 		if overlapped_body == Frog:
-			if Frog.state != GRABBED:
-				if attached == false:
-					Frog.attachToLilypad(self)
-					Frog.idle_timer.paused = true
-					Frog.wander_timer.paused = true
-					attached = true
+			Frog.attachToLilypad(self)
+			Frog.renderer.grab_focus()
 				
 				#Frog.global_position = attach_area.global_position + Vector2(0, 50)
 

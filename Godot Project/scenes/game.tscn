@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c66f2tiagg1sr"]
 
-[ext_resource type="PackedScene" uid="uid://bunftv3i85b11" path="res://scenes/objects/lily_pad.tscn" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://crejydxdb4pwp" path="res://scenes/misc/border.tscn" id="2_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=2032547942]
@@ -28,6 +27,3 @@ position = Vector2(235, 401)
 collision_layer = 4294967295
 collision_mask = 4294967295
 direction = 4
-
-[node name="Lily Pad" parent="." unique_id=717174440 instance=ExtResource("2_lnu2h")]
-position = Vector2(904, 175)

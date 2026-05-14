@@ -63,6 +63,9 @@ func _physics_process(_delta: float) -> void:
 
 func get_camera_pos_from_window()->Vector2i:
 	return position + velocity
+	
+func _process(_delta: float) -> void:
+	position = Vector2(focus.position.x - ((focusSize.x * 6) / 2), focus.position.y - ((focusSize.y * 6) / 2)) + offset
 
 func _input(event):
 	if hovering:
