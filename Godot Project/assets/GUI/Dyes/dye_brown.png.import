@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3dqlpswh78iq"
-path="res://.godot/imported/dye_brown.png-3a65d83a8969c37ef75980d6b4529777.ctex"
+path="res://.godot/imported/dye_brown.png-2ef5ada7e59063bd82f48b87da0ad927.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Dyes/dye_brown.png"
-dest_files=["res://.godot/imported/dye_brown.png-3a65d83a8969c37ef75980d6b4529777.ctex"]
+source_file="res://assets/gui/Dyes/dye_brown.png"
+dest_files=["res://.godot/imported/dye_brown.png-2ef5ada7e59063bd82f48b87da0ad927.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bunftv3i85b11"]
 
-[ext_resource type="Texture2D" uid="uid://b3gmwa3pi6xrf" path="res://assets/Objects/lilypad.png" id="1_7fe25"]
+[ext_resource type="Texture2D" uid="uid://b3gmwa3pi6xrf" path="res://assets/objects/lilypad.png" id="1_7fe25"]
 [ext_resource type="Script" uid="uid://dxcyglcop70ek" path="res://scripts/objects/lily_pad.gd" id="1_kyqs1"]
 [ext_resource type="PackedScene" uid="uid://mab34yxeq46u" path="res://scenes/misc/grabbing.tscn" id="2_kyqs1"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/misc/renderer.tscn" id="3_5pq21"]

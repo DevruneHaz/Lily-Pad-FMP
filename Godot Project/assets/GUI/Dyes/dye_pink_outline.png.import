@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8gckudw6o3s0"
-path="res://.godot/imported/dye_pink_outline.png-b12401b8ca333d7759ebfb59f29db6db.ctex"
+path="res://.godot/imported/dye_pink_outline.png-22055e891550014d04c6484de1805f62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Dyes/dye_pink_outline.png"
-dest_files=["res://.godot/imported/dye_pink_outline.png-b12401b8ca333d7759ebfb59f29db6db.ctex"]
+source_file="res://assets/gui/Dyes/dye_pink_outline.png"
+dest_files=["res://.godot/imported/dye_pink_outline.png-22055e891550014d04c6484de1805f62.ctex"]
 
 [params]
 

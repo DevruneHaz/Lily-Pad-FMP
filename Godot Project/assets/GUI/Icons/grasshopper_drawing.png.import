@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw2bwpe60cm3"
-path="res://.godot/imported/grasshopper_drawing.png-212518790e67e88a3ac609b33b9211d4.ctex"
+path="res://.godot/imported/grasshopper_drawing.png-cf4d5d4d18fde68603ecb2456b6528fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Icons/grasshopper_drawing.png"
-dest_files=["res://.godot/imported/grasshopper_drawing.png-212518790e67e88a3ac609b33b9211d4.ctex"]
+source_file="res://assets/gui/Icons/grasshopper_drawing.png"
+dest_files=["res://.godot/imported/grasshopper_drawing.png-cf4d5d4d18fde68603ecb2456b6528fd.ctex"]
 
 [params]
 

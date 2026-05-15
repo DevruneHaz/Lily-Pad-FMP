@@ -29,70 +29,6 @@ shader_parameter/secondary_replace_1 = Color(0, 0, 0, 1)
 shader_parameter/secondary_replace_2 = Color(0, 0, 0, 1)
 shader_parameter/secondary_replace_3 = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ybftx"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(0, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ifle"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(48, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uu7fg"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(96, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ycnbg"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(144, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eqhdc"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(192, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4au2m"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(240, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wiiuq"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(288, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p8yr8"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(336, 144, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mokc4"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(0, 192, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4pjqi"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(48, 192, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2aq02"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(96, 192, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1j5sl"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(144, 192, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_blvm1"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(192, 192, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jg4rb"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(240, 192, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ymnba"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(288, 192, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f47h2"]
-atlas = ExtResource("2_uogx6")
-region = Rect2(336, 192, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyyg8"]
 atlas = ExtResource("2_uogx6")
 region = Rect2(0, 0, 48, 48)
@@ -191,64 +127,6 @@ region = Rect2(336, 96, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pkly0"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ybftx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4ifle")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uu7fg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ycnbg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eqhdc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4au2m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wiiuq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p8yr8")
-}],
-"loop": true,
-"name": &"Falling_Left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mokc4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4pjqi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2aq02")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1j5sl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_blvm1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jg4rb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ymnba")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f47h2")
-}],
-"loop": true,
-"name": &"Falling_Right",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 8.0,
 "texture": SubResource("AtlasTexture_wyyg8")
@@ -355,7 +233,7 @@ colourPallette = ExtResource("2_n7xjk")
 material = SubResource("ShaderMaterial_uogx6")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_pkly0")
-animation = &"Walk_Right"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
 visible = false

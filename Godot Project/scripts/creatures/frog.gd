@@ -120,43 +120,6 @@ func jumpAnimation():
 	elif direction.x < 0:
 		sprite.animation = "Walk_Left"
 
-func fallingAnimation():
-	sprite.flip_h = false
-	sprite.animation = "Falling_Left"
-	if direction.y < 0:
-		print("Up")
-		if direction.x > 0:
-			print("Right")
-			sprite.set_frame_and_progress(7, 0)
-		elif direction.x < 0:
-			print("Left")
-			sprite.set_frame_and_progress(1, 0)
-		elif direction.x == 0:
-			sprite.set_frame_and_progress(0, 0)
-			
-	elif direction.y > 0:
-		print("Down")
-		if direction.x > 0:
-			print("Right")
-			sprite.set_frame_and_progress(5, 0)
-		elif direction.x < 0:
-			print("Left")
-			sprite.set_frame_and_progress(3, 0)
-		elif direction.x == 0:
-			sprite.set_frame_and_progress(4, 0)
-			
-	elif direction.y == 0:
-		if direction.x > 0:
-			print("Right")
-			sprite.set_frame_and_progress(6, 0)
-		elif direction.x < 0:
-			print("Left")
-			sprite.set_frame_and_progress(2, 0)
-		elif direction.x == 0:
-			sprite.set_frame_and_progress(0, 0)
-			
-	sprite.pause()
-
 func eatAnimation():
 	pass
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjvooruiqnhl3"
-path="res://.godot/imported/lillypad_disabled.png-c97aa1df40962e382458b6f8c4167849.ctex"
+path="res://.godot/imported/lillypad_disabled.png-ee6bdba8b5639f384c85a7fb2d003993.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Icons/lillypad_disabled.png"
-dest_files=["res://.godot/imported/lillypad_disabled.png-c97aa1df40962e382458b6f8c4167849.ctex"]
+source_file="res://assets/gui/Icons/lillypad_disabled.png"
+dest_files=["res://.godot/imported/lillypad_disabled.png-ee6bdba8b5639f384c85a7fb2d003993.ctex"]
 
 [params]
 
