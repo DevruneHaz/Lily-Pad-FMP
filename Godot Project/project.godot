@@ -13,7 +13,7 @@ config_version=5
 config/name="Lily Pad"
 run/main_scene="uid://c66f2tiagg1sr"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dqnnlk6ayx5n6"
 
 [audio]
 

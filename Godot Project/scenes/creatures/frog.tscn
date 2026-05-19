@@ -15,19 +15,81 @@ shader_parameter/primary_original_1 = Color(0.41568628, 0.74509805, 0.1882353, 1
 shader_parameter/primary_original_2 = Color(0.3254902, 0.6392157, 0.11372549, 1)
 shader_parameter/primary_original_3 = Color(0.26666668, 0.5529412, 0.07450981, 1)
 shader_parameter/primary_original_4 = Color(0.21176471, 0.45882353, 0.050980393, 1)
-shader_parameter/primary_replace_0 = Color(0, 0, 0, 1)
-shader_parameter/primary_replace_1 = Color(0, 0, 0, 1)
-shader_parameter/primary_replace_2 = Color(0, 0, 0, 1)
-shader_parameter/primary_replace_3 = Color(0, 0, 0, 1)
-shader_parameter/primary_replace_4 = Color(0, 0, 0, 1)
+shader_parameter/primary_original_5 = Color(0.17254902, 0.36078432, 0.047058824, 1)
+shader_parameter/primary_replace_0 = Color(0.6, 0.8980392, 0.3137255, 1)
+shader_parameter/primary_replace_1 = Color(0.41568628, 0.74509805, 0.1882353, 1)
+shader_parameter/primary_replace_2 = Color(0.3254902, 0.6392157, 0.11372549, 1)
+shader_parameter/primary_replace_3 = Color(0.26666668, 0.5529412, 0.07450981, 1)
+shader_parameter/primary_replace_4 = Color(0.21176471, 0.45882353, 0.050980393, 1)
+shader_parameter/primary_replace_5 = Color(0.17254902, 0.36078432, 0.047058824, 1)
 shader_parameter/secondary_original_0 = Color(0.9254902, 0.9019608, 0.4509804, 1)
 shader_parameter/secondary_original_1 = Color(0.75686276, 0.74509805, 0.4, 1)
 shader_parameter/secondary_original_2 = Color(0.627451, 0.61960787, 0.35686275, 1)
 shader_parameter/secondary_original_3 = Color(0.5294118, 0.5254902, 0.28235295, 1)
-shader_parameter/secondary_replace_0 = Color(0, 0, 0, 1)
-shader_parameter/secondary_replace_1 = Color(0, 0, 0, 1)
-shader_parameter/secondary_replace_2 = Color(0, 0, 0, 1)
-shader_parameter/secondary_replace_3 = Color(0, 0, 0, 1)
+shader_parameter/secondary_replace_0 = Color(0.9254902, 0.9019608, 0.4509804, 1)
+shader_parameter/secondary_replace_1 = Color(0.75686276, 0.74509805, 0.4, 1)
+shader_parameter/secondary_replace_2 = Color(0.627451, 0.61960787, 0.35686275, 1)
+shader_parameter/secondary_replace_3 = Color(0.6431373, 0.63529414, 0.38039216, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1q4d"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsbpl"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(48, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6jub"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(96, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddv3g"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(144, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfvwd"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(192, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csqis"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(240, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og3ej"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(192, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb06i"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(144, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y82a"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(96, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x0yq"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(48, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnbes"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7xjk"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(48, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8h13v"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(96, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmdw4"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(144, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gy0t"]
+atlas = ExtResource("2_uogx6")
+region = Rect2(192, 240, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyyg8"]
 atlas = ExtResource("2_uogx6")
@@ -127,6 +189,61 @@ region = Rect2(336, 96, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pkly0"]
 animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_l1q4d")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_nsbpl")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_m6jub")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ddv3g")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cfvwd")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_csqis")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_og3ej")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bb06i")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_3y82a")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_4x0yq")
+}],
+"loop": true,
+"name": &"Croak",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_qnbes")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_n7xjk")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_8h13v")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_bmdw4")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_8gy0t")
+}],
+"loop": true,
+"name": &"Eat",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 8.0,
 "texture": SubResource("AtlasTexture_wyyg8")
@@ -233,7 +350,8 @@ colourPallette = ExtResource("2_n7xjk")
 material = SubResource("ShaderMaterial_uogx6")
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_pkly0")
-animation = &"Idle"
+animation = &"Croak"
+frame_progress = 0.6978345
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1407318065]
 visible = false
@@ -257,7 +375,7 @@ top_level = true
 visibility_layer = 0
 position = Vector2(-12, 0)
 scale = Vector2(6, 6)
-points = PackedVector2Array(0, 0, 0, 5)
+points = PackedVector2Array(0, 3, 0, 7)
 width = 16.0
 texture = ExtResource("4_n7xjk")
 texture_mode = 2
@@ -280,5 +398,6 @@ scale = Vector2(0.25347227, 0.57142866)
 polygon = PackedVector2Array(0, 0, 0, 0, 278.64514, -13.789387, 288, 18, 0, 30)
 uv = PackedVector2Array(0, 0, 0, 0, 278.64514, -13.789387, 288, 18, 0, 30)
 
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animation_looped"]
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]

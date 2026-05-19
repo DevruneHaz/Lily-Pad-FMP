@@ -38,6 +38,7 @@ var startGrabbing: bool
 var wanderDirection: int = 1
 var jumpDirection: int = 1
 var isJumping: bool = false
+var idleAnim: int = 0
 var target: Node2D
 var eating: bool
 var interact: bool
@@ -58,12 +59,12 @@ func replaceColours():
 	secondaryColour = 0
 	pallette = colourPallette.get_image()
 	
-	while primaryColour != 5:
+	while primaryColour != 6:
 		sprite.material.set_shader_parameter(("primary_replace_" + str(primaryColour)), pallette.get_pixel(primaryColour, 0))
 		primaryColour = primaryColour + 1
 		
 	while secondaryColour != 4:
-		sprite.material.set_shader_parameter(("secondary_replace_" + str(secondaryColour)), pallette.get_pixel((secondaryColour + 5), 0))
+		sprite.material.set_shader_parameter(("secondary_replace_" + str(secondaryColour)), pallette.get_pixel((secondaryColour + 6), 0))
 		secondaryColour = secondaryColour + 1
 
 func _ready():
@@ -73,36 +74,51 @@ func _ready():
 	frogTongueRenderer.visible = false
 
 func animate():
-	if state == IDLE:
-		if lastState == WANDER:
-			if speed > 0:
-				walkAnimation()
+	if state != EAT:
+		if state == IDLE:
+			if lastState == WANDER:
+				if speed > 0:
+					walkAnimation()
+				else:
+					idleAnimation()
+			elif lastState == JUMP:
+				if speed > 0:
+					jumpAnimation()
+				else:
+					idleAnimation()
+			elif lastState == GRABBED:
+				if speed != 0:
+					jumpAnimation()
+				else:
+					idleAnimation()
+			elif lastState == EAT:
+				eatAnimation(true)
 			else:
 				idleAnimation()
-		elif lastState == JUMP:
-			if speed > 0:
-				jumpAnimation()
-			else:
-				idleAnimation()
-		elif lastState == GRABBED:
-			if speed != 0:
-				jumpAnimation()
-			else:
-				idleAnimation()
+		elif state == GRABBED:
+			idleAnimation()
 		else:
 			idleAnimation()
-	elif state == GRABBED:
-		idleAnimation()
 	else:
-		idleAnimation()
+		eatAnimation(false)
 
 func idleAnimation():
+	if idleAnim == 0:
+		sprite.animation = "Idle"
+	elif idleAnim == 1:
+		sprite.animation = "Croak"
 	sprite.play()
-	sprite.animation = "Idle"
+	
 	if direction.x > 0:
 		sprite.flip_h = true
 	elif direction.x < 0:
 		sprite.flip_h = false
+		
+	sprite.play()
+	
+func _on_animation_looped() -> void:
+	if sprite.animation == "Idle" or sprite.animation == "Croak":
+		idleAnim = randi_range(0, 1)
 
 func walkAnimation():
 	sprite.play()
@@ -120,8 +136,19 @@ func jumpAnimation():
 	elif direction.x < 0:
 		sprite.animation = "Walk_Left"
 
-func eatAnimation():
-	pass
+func eatAnimation(backwards: bool):
+	sprite.animation = "Eat"
+	if backwards == false:
+		if sprite.frame == 4:
+			sprite.pause()
+		else:
+			sprite.play()
+	elif backwards == true:
+		if sprite.frame == 0:
+			sprite.pause()
+		else:
+			sprite.play_backwards()
+	
 
 func _on_idle_timer_timeout() -> void:
 	if game_manager.grassHoppers.is_empty():
@@ -148,13 +175,16 @@ func _on_idle_timer_timeout() -> void:
 
 func _on_jump_complete() -> void:
 	idle_timer.wait_time = randf_range(2, 5)
+	idleAnim = randi_range(0, 1)
 	idle_timer.start()
 	velocity = Vector2(0, 0)
 	state = IDLE
+	
 	lastState = JUMP
 
 func _on_wander_timer_timeout() -> void:
 	idle_timer.wait_time = randf_range(1, 2)
+	idleAnim = randi_range(0, 1)
 	idle_timer.start()
 	velocity = Vector2(0, 0)
 	state = IDLE
@@ -290,6 +320,9 @@ func jumpState():
 
 func eatState():
 	if target:
+		velocity = Vector2(0, 0)
+		direction = Vector2(0, 0)
+		speed = 0
 		tongue.visible = true
 		tongue_end.visible = true
 		frogTongueRenderer.visible = true
@@ -300,12 +333,13 @@ func eatState():
 		
 		frogTongueRenderer.grab_focus()
 		target.eaten(self)
-		tongue.set_point_position(0, tongue.to_local(self.global_position))
+		tongue.set_point_position(0, tongue.to_local(self.global_position + Vector2(-12, 24)))
 		tongue.set_point_position(1, tongue.to_local(target.global_position))
 		tongue_end.position = (tongue.to_local(target.global_position))
 		
 	else:
 		idle_timer.wait_time = randf_range(1.5, 3)
+		idleAnim = randi_range(0, 1)
 		idle_timer.start()
 		frogTongueRenderer.visible = false
 		tongue.visible = false
@@ -372,6 +406,7 @@ func mushroomState(desiredDelta):
 		move_and_slide()
 	else:
 		state = IDLE
+		idleAnim = randi_range(0, 1)
 		idle_timer.start()
 	
 func stepOffMushroom():
