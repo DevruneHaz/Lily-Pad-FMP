@@ -47,6 +47,7 @@ var lilypad: Node2D
 var attached: bool
 var onMushroom: bool = false
 var mushroom: Node2D
+var tongueStrength: float = -5
 
 @export var colourPallette: Texture2D
 var pallette: Image
@@ -137,6 +138,7 @@ func jumpAnimation():
 		sprite.animation = "Walk_Left"
 
 func eatAnimation(backwards: bool):
+	sprite.flip_h = false
 	sprite.animation = "Eat"
 	if backwards == false:
 		if sprite.frame == 4:
@@ -331,6 +333,16 @@ func eatState():
 		frogTongueRenderer.window.set_canvas_cull_mask_bit(1, true)
 		frogTongueRenderer._Camera.set_visibility_layer_bit(1, true)
 		
+		if target.grabbing.grabbed == true:
+			tongueStrength = tongueStrength * 1.001
+			var mousePos: Vector2 = frogTongueRenderer.get_mouse_position()
+			var mouseDir: Vector2 = Vector2(Frog.position.x - target.position.x, Frog.position.y - target.position.y).normalized()
+			var newMousePosX: float = mousePos.x - (mouseDir.x * tongueStrength)
+			var newMousePosY: float = mousePos.y - (mouseDir.y * tongueStrength)
+			
+			print(mouseDir)
+			DisplayServer.warp_mouse(Vector2(newMousePosX, newMousePosY))
+		
 		frogTongueRenderer.grab_focus()
 		target.eaten(self)
 		tongue.set_point_position(0, tongue.to_local(self.global_position + Vector2(-12, 24)))
@@ -338,6 +350,7 @@ func eatState():
 		tongue_end.position = (tongue.to_local(target.global_position))
 		
 	else:
+		tongueStrength = -5
 		idle_timer.wait_time = randf_range(1.5, 3)
 		idleAnim = randi_range(0, 1)
 		idle_timer.start()

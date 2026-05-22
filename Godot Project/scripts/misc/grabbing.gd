@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		parent.direction = direction
 		game_manager.hovering = get_parent()
 		parent.velocity = Vector2(0, 0)
+		
 			
 		if speed >= maxSpeed:
 			speed = maxSpeed
