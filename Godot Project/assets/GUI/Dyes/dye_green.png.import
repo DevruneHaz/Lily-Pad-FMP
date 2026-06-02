@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8201has43spl"
-path="res://.godot/imported/dye_green.png-51c7fbf221eb58696392f37620c64ec1.ctex"
+path="res://.godot/imported/dye_green.png-a53ce1c81d4176e5a61c61c3375b75a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Dyes/dye_green.png"
-dest_files=["res://.godot/imported/dye_green.png-51c7fbf221eb58696392f37620c64ec1.ctex"]
+source_file="res://assets/gui/Dyes/dye_green.png"
+dest_files=["res://.godot/imported/dye_green.png-a53ce1c81d4176e5a61c61c3375b75a0.ctex"]
 
 [params]
 

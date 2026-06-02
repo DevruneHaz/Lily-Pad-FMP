@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccavsfp3mu2es"
-path="res://.godot/imported/dye_green_outline.png-a1d95fe4f43e1af5203c21374173ce05.ctex"
+path="res://.godot/imported/dye_green_outline.png-19a8a5dface58d7c9fceb7910f9cc2d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Dyes/dye_green_outline.png"
-dest_files=["res://.godot/imported/dye_green_outline.png-a1d95fe4f43e1af5203c21374173ce05.ctex"]
+source_file="res://assets/gui/Dyes/dye_green_outline.png"
+dest_files=["res://.godot/imported/dye_green_outline.png-19a8a5dface58d7c9fceb7910f9cc2d9.ctex"]
 
 [params]
 
