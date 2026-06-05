@@ -13,6 +13,9 @@ var renderers: Array[Window]
 var objects: Array[Node2D]
 var maxObjects: int = 18
 
+var balls: Array[Node2D]
+var lily_pads: Array[Node2D]
+var mushrooms: Array[Node2D]
 var grassHoppers: Array[Node2D]
 
 # Called when the node enters the scene tree for the first time.

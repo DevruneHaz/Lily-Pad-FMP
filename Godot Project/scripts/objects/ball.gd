@@ -16,6 +16,7 @@ var state = IDLE
 
 func _ready() -> void:
 	GameManager.objects.append(self)
+	GameManager.balls.append(self)
 
 func _physics_process(delta: float) -> void:
 	match state:

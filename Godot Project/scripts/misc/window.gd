@@ -23,6 +23,8 @@ var startGrabbing: bool
 var grabPoint: Vector2
 var interacted: bool = false
 
+var array_type
+
 func _ready() -> void:
 	# Set the anchor mode to "Fixed top-left"
 	# Easier to work with since it corresponds to the window coordinates
@@ -106,3 +108,4 @@ func _on_close_requested() -> void:
 			GameManager.grassHoppers.erase(value)
 	
 	focus.queue_free()
+	

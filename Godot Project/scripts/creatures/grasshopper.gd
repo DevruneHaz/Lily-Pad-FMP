@@ -32,7 +32,6 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	set_collision()
-	print(collisionLayer)
 	
 func set_collision():
 	self.collision_mask = 0

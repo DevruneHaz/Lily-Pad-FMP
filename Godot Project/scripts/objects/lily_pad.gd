@@ -16,6 +16,7 @@ var state = IDLE
 
 func _ready() -> void:
 	GameManager.objects.append(self)
+	GameManager.lily_pads.append(self)
 	
 
 func _physics_process(_delta: float) -> void:

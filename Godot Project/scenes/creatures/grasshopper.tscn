@@ -43,6 +43,7 @@ shape = SubResource("RectangleShape2D_muwyl")
 position = Vector2(0, 6)
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("4_71whg")]
+unfocusable = true
 focus = NodePath("..")
 focusSize = Vector2(32, 16)
 sprite = NodePath("../AnimatedSprite2D")

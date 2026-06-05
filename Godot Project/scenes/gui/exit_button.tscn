@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dyh1sy23f4kl5"]
 
 [ext_resource type="Script" uid="uid://dmh3iswelijm7" path="res://scripts/gui/exit_button.gd" id="1_jrkvh"]
-[ext_resource type="Texture2D" uid="uid://brihqwwxcom5p" path="res://assets/GUI/Icons/exit_icon.png" id="2_q3jrs"]
+[ext_resource type="Texture2D" uid="uid://brihqwwxcom5p" path="res://assets/gui/Icons/exit_icon.png" id="2_q3jrs"]
 [ext_resource type="PackedScene" uid="uid://cyfbgcqqn2fdm" path="res://scenes/misc/renderer.tscn" id="3_lafu0"]
 
 [node name="Exit Button" type="Area2D" unique_id=1447677838]
@@ -24,6 +24,7 @@ polygon = PackedVector2Array(-20, -10, -10, -20, 15, -20, 25, -10, 25, 15, 15, 2
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_lafu0")]
 exclusive = true
+unfocusable = true
 focus = NodePath("..")
 focusSize = Vector2(9, 9)
 sprite = NodePath("../Sprite2D")

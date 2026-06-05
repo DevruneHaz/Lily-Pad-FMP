@@ -197,7 +197,10 @@ func _process(_delta: float) -> void:
 	window_check()
 	
 	if state == MUSHROOM:
-		position.x = mushroom.global_position.x
+		if mushroom != null:
+			global_position.x = mushroom.position.x
+		else:
+			state = IDLE
 		
 	if state != EAT:
 		grabbed = renderer.grabbed
@@ -408,9 +411,9 @@ func stepOnMushroom(targetMushroom: Node2D):
 	
 func mushroomState(desiredDelta):
 	if mushroom != null:
-		global_position.x = mushroom.global_position.x
+		renderer.grab_focus()
 		if is_on_floor():
-			direction = Vector2(0, -50)
+			direction = Vector2(direction.x, -50)
 			speed = randf_range(30, 50)
 	
 		elif not is_on_floor():
