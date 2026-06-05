@@ -31,6 +31,10 @@ func _process(_delta: float) -> void:
 	mousePosition = get_global_mouse_position()
 	for renderer in range(renderers.size()):
 		renderers.get(renderer).visibilityLayer = renderer
+		
+	if grassHoppers.is_empty() == false:
+		for grassHopper in range(grassHoppers.size()):
+			grassHoppers.get(grassHopper).collisionLayer = grassHopper + 2
 
 func set_passthrough() -> void: #Sets coordinates of the hitbox
 	var texture_corners: PackedVector2Array = [

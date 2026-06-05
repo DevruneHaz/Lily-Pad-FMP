@@ -16,6 +16,7 @@ var state = IDLE
 
 func _ready() -> void:
 	GameManager.objects.append(self)
+	
 
 func _physics_process(_delta: float) -> void:
 	attach()

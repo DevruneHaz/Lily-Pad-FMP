@@ -194,6 +194,7 @@ func _on_wander_timer_timeout() -> void:
 
 func _process(_delta: float) -> void:
 	animate()
+	window_check()
 	
 	if state == MUSHROOM:
 		position.x = mushroom.global_position.x
@@ -229,6 +230,14 @@ func _process(_delta: float) -> void:
 			state = IDLE
 			idle_timer.start()
 			startGrabbing = false
+			
+	
+
+func window_check():
+	if renderer:
+		pass
+	else:
+		get_tree().quit()
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -379,6 +388,7 @@ func attachToLilypad(targetLilypad: Node2D):
 		if attached == false:
 			idle_timer.stop()
 			wander_timer.stop()
+			renderer.grab_focus()
 			state = LILYPAD
 			lilypad = targetLilypad
 			attached = true

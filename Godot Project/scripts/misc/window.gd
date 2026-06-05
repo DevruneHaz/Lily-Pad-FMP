@@ -92,3 +92,17 @@ func _on_mouse_exited() -> void:
 	if grabbed == false:
 		hovering = false
 		game_manager.hovering = null
+
+
+func _on_close_requested() -> void:
+	_Camera.queue_free()
+	sprite.queue_free()
+	for value in GameManager.objects:
+		if value == focus:
+			GameManager.objects.erase(value)
+			GameManager.renderers.erase(value.renderer)
+	for value in GameManager.grassHoppers:
+		if value == self:
+			GameManager.grassHoppers.erase(value)
+	
+	focus.queue_free()

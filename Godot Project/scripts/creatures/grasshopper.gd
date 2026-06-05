@@ -26,16 +26,20 @@ enum {
 var state = IDLE
 
 func _ready() -> void:
-	collisionLayer = game_manager.grassHopperLayer + 1
-	game_manager.grassHopperLayer = collisionLayer
+	
+	game_manager.grassHoppers.append(grasshopper)
+	game_manager.objects.append(self)
+	
+func _process(_delta: float) -> void:
+	set_collision()
+	print(collisionLayer)
+	
+func set_collision():
 	self.collision_mask = 0
 	self.collision_layer = 0
 	
 	self.set_collision_mask_value(collisionLayer, true)
 	self.set_collision_layer_value(collisionLayer, true)
-	
-	game_manager.grassHoppers.append(grasshopper)
-	game_manager.objects.append(self)
 
 func _physics_process(delta: float) -> void:
 	if state != EATEN:

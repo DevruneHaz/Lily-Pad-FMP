@@ -33,7 +33,6 @@ func _on_cooldown_timeout() -> void:
 	
 func _process(_delta: float) -> void:
 	
-	
 	if GameManager.objects.size() >= GameManager.maxObjects or spawnedObjects.size() >= limit and not limit == 0:
 		active = false
 		iconSprite.texture = disabled
@@ -72,7 +71,8 @@ func _process(_delta: float) -> void:
 #		renderer.visible = true
 #	else:
 #		renderer.visible = false
-		
+
+
 func spawnObject():
 	var object: Node2D = type.instantiate()
 	object.position = position

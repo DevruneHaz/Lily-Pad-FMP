@@ -359,6 +359,7 @@ shape = SubResource("CircleShape2D_qyo2l")
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_qnbes")]
 position = Vector2i(0, 0)
+unfocusable = false
 focus = NodePath("..")
 focusSize = Vector2(32, 32)
 sprite = NodePath("../AnimatedSprite2D")

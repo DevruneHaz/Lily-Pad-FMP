@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5uiq1yhci4vo"
-path="res://.godot/imported/dye_red.png-e41090412c1b9fff0b092abb5aa3bc2d.ctex"
+path="res://.godot/imported/dye_red.png-2426b05c6ef8ace3139f96ed172a624d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GUI/Dyes/dye_red.png"
-dest_files=["res://.godot/imported/dye_red.png-e41090412c1b9fff0b092abb5aa3bc2d.ctex"]
+source_file="res://assets/gui/Dyes/dye_red.png"
+dest_files=["res://.godot/imported/dye_red.png-2426b05c6ef8ace3139f96ed172a624d.ctex"]
 
 [params]
 

@@ -39,6 +39,7 @@ shape = SubResource("CapsuleShape2D_kyqs1")
 [node name="Grabbing" parent="." unique_id=1711679799 instance=ExtResource("2_kyqs1")]
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_5pq21")]
+unfocusable = false
 focus = NodePath("..")
 focusSize = Vector2(40, 64)
 sprite = NodePath("../Sprite2D")
