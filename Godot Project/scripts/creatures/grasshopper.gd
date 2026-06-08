@@ -41,6 +41,7 @@ func set_collision():
 	self.set_collision_layer_value(collisionLayer, true)
 
 func _physics_process(delta: float) -> void:
+	
 	if state != EATEN:
 		if not is_on_floor():
 			state = IDLE
@@ -109,18 +110,6 @@ func eatenState(desiredDelta: float):
 	speed = position.distance_to(frog.position) * randf_range(7, 10)
 	grabbing.active = false
 	
-	for overlapped_body in eat_area.get_overlapping_bodies():
-		if overlapped_body == frog:
-			for value in game_manager.grassHoppers:
-				if value == self:
-					game_manager.objects.erase(value)
-					game_manager.grassHoppers.erase(value)
-					game_manager.renderers.erase(value.renderer)
-					#for button in Book.gui.spawnButtons:
-					#	for spawn in button.spawnedObjects:
-					#		if spawn == value:
-					#			button.spawnedObjects.erase(value)
-					queue_free()
 	
 	
 	var collision = move_and_collide(direction * speed * desiredDelta)

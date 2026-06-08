@@ -1,20 +1,39 @@
 extends CharacterBody2D
 
-@onready var game_manager: Node = GameManager
-@onready var frog: CharacterBody2D = $"."
+#Create Variables-----------------------------------------------------------------------------------
+
+#Import Frog Components
+@onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var renderer: Window = $Renderer
+@onready var stateTimer: Timer = $StateTimer
 
-@onready var idle_timer: Timer = $IdleTimer
-@onready var wander_timer: Timer = $WanderTimer
-
+#Import Tongue Components
 @onready var tongue: Line2D = $Tongue
-@onready var tongue_end: Sprite2D = $Tongue/TongueEnd
-const tongueRenderer = preload("uid://cyfbgcqqn2fdm")
-@onready var frogTongueRenderer: Window = $Tongue/Renderer
-@onready var tongue_polygon: Polygon2D = $Tongue/TonguePolygon
+@onready var tongueEnd: Sprite2D = $Tongue/TongueEnd
+@onready var tongueRenderer: Window = $Tongue/Renderer
+@onready var tonguePolygon: Polygon2D = $Tongue/TonguePolygon
+
+#Movement Variables
+var speed: float
+var speedMultiplier: int = 25
+var maxSpeed: int = 355000
+var direction: Vector2
+var wanderDirection: int = 1
+var jumpDirection: int = 1
+var grounded: bool
 var pushable: bool = false
 
+#State Variables
+var grabbed: bool
+var interact: bool
+var justInteracted: bool
+var startGrabbing: bool
+var isJumping: bool = false
+var onMushroom: bool = false
+var eating: bool
+var tongueStrength: float = -5
+var attached: bool
 enum {
 	IDLE,
 	WANDER,
@@ -28,34 +47,76 @@ enum {
 var state = IDLE
 var lastState = IDLE
 
-var speed: float
-var speedMultiplier: int = 25
-var maxSpeed: int = 355000
-var direction: Vector2
-var grounded: bool
-var grabbed: bool
-var startGrabbing: bool
-var wanderDirection: int = 1
-var jumpDirection: int = 1
-var isJumping: bool = false
-var idleAnim: int = 0
-var target: Node2D
-var eating: bool
-var interact: bool
-var justInteracted: bool
-var lilypad: Node2D
-var attached: bool
-var onMushroom: bool = false
-var mushroom: Node2D
-var tongueStrength: float = -5
-
+#Animation variables
 @export var colourPallette: Texture2D
 var pallette: Image
 var primaryColour: int = 0
 var secondaryColour: int = 0
+var idleAnim: int = 0
 
+#Relationship Variables
+var target: Node2D
+var lilypad: Node2D
+var mushroom: Node2D
 
+#Generic--------------------------------------------------------------------------------------------
+func _ready():
+	#Runs when the game starts.
+	replaceColours()
+	sprite.play()
+	stateTimer.start()
+	tongueRenderer.visible = false
+
+func _process(_delta: float) -> void:
+	animate()
+	window_check()
+	
+	if state == MUSHROOM:
+		if mushroom != null:
+			global_position.x = mushroom.position.x
+		else:
+			state = IDLE
+		
+	if state != EAT:
+		grabbed = renderer.grabbed
+		interact = renderer.interacted
+		
+		
+		if interact == true:
+			justInteracted = true
+			lastState = state
+			state = INTERACT
+			stateTimer.stop()
+			sprite.animation = "Interact"
+		elif interact == false and justInteracted == true:
+			justInteracted = false
+			lastState = state
+			state = IDLE
+			stateTimer.start()
+		
+		if grabbed == true and startGrabbing == false:
+			lastState = state
+			state = GRABBED
+			stateTimer.stop()
+			startGrabbing = true
+			detachFromLilypad()
+			stepOffMushroom()
+		elif grabbed == false and startGrabbing == true:
+			lastState = state
+			state = IDLE
+			stateTimer.start()
+			startGrabbing = false
+
+func window_check():
+	#Detects when the frog's window is closed and exits the game.
+	if renderer:
+		pass
+	else:
+		get_tree().quit()
+
+#Animation------------------------------------------------------------------------------------------
 func replaceColours():
+	#Changes the colour pallete of the frog.
 	primaryColour = 0
 	secondaryColour = 0
 	pallette = colourPallette.get_image()
@@ -68,13 +129,8 @@ func replaceColours():
 		sprite.material.set_shader_parameter(("secondary_replace_" + str(secondaryColour)), pallette.get_pixel((secondaryColour + 6), 0))
 		secondaryColour = secondaryColour + 1
 
-func _ready():
-	replaceColours()
-	sprite.play()
-	idle_timer.start()
-	frogTongueRenderer.visible = false
-
 func animate():
+	#Switches the frog's animation based on state.
 	if state != EAT:
 		if state == IDLE:
 			if lastState == WANDER:
@@ -104,6 +160,7 @@ func animate():
 		eatAnimation(false)
 
 func idleAnimation():
+	
 	if idleAnim == 0:
 		sprite.animation = "Idle"
 	elif idleAnim == 1:
@@ -116,8 +173,9 @@ func idleAnimation():
 		sprite.flip_h = false
 		
 	sprite.play()
-	
-func _on_animation_looped() -> void:
+
+func idleAnimationLooped():
+	#Switches between blinking and croaking in idle animation.
 	if sprite.animation == "Idle" or sprite.animation == "Croak":
 		idleAnim = randi_range(0, 1)
 
@@ -150,103 +208,10 @@ func eatAnimation(backwards: bool):
 			sprite.pause()
 		else:
 			sprite.play_backwards()
-	
 
-func _on_idle_timer_timeout() -> void:
-	if game_manager.grassHoppers.is_empty():
-		var jumping: bool = randi_range(0, 1)
-		if jumping:
-			jumpDirection = randi_range(-1, 0)
-			if jumpDirection == 0:
-				jumpDirection = 1
-			isJumping = true
-			state = JUMP
-			lastState = IDLE
-		else:
-			wander_timer.wait_time = randf_range(2, 3)
-			wanderDirection = randi_range(-1, 0)
-			if wanderDirection == 0:
-				wanderDirection = 1
-			wander_timer.start()
-			state = WANDER
-			lastState = IDLE
-	else:
-		target = game_manager.grassHoppers.pick_random()
-		state = EAT
-		lastState = IDLE
-
-func _on_jump_complete() -> void:
-	idle_timer.wait_time = randf_range(2, 5)
-	idleAnim = randi_range(0, 1)
-	idle_timer.start()
-	velocity = Vector2(0, 0)
-	state = IDLE
-	
-	lastState = JUMP
-
-func _on_wander_timer_timeout() -> void:
-	idle_timer.wait_time = randf_range(1, 2)
-	idleAnim = randi_range(0, 1)
-	idle_timer.start()
-	velocity = Vector2(0, 0)
-	state = IDLE
-	lastState = WANDER
-
-func _process(_delta: float) -> void:
-	animate()
-	window_check()
-	
-	if state == MUSHROOM:
-		if mushroom != null:
-			global_position.x = mushroom.position.x
-		else:
-			state = IDLE
-		
-	if state != EAT:
-		grabbed = renderer.grabbed
-		interact = renderer.interacted
-		
-		
-		if interact == true:
-			justInteracted = true
-			lastState = state
-			state = INTERACT
-			idle_timer.stop()
-			wander_timer.stop()
-			sprite.animation = "Interact"
-		elif interact == false and justInteracted == true:
-			justInteracted = false
-			lastState = state
-			state = IDLE
-			idle_timer.start()
-		
-		if grabbed == true and startGrabbing == false:
-			lastState = state
-			state = GRABBED
-			idle_timer.stop()
-			wander_timer.stop()
-			startGrabbing = true
-			detachFromLilypad()
-			stepOffMushroom()
-		elif grabbed == false and startGrabbing == true:
-			lastState = state
-			state = IDLE
-			idle_timer.start()
-			startGrabbing = false
-			
-	
-
-func window_check():
-	if renderer:
-		pass
-	else:
-		get_tree().quit()
-
+#Physics States-------------------------------------------------------------------------------------
 func _physics_process(delta: float) -> void:
-	match state:
-		GRABBED:
-			grabbedState(delta)
-	
+	#Changs the frog's movement based om state.
 	match state:
 		IDLE:
 			idleState(delta)
@@ -258,19 +223,23 @@ func _physics_process(delta: float) -> void:
 	match state:
 		JUMP:
 			jumpState()
-			
-	match state:
-		LILYPAD:
-			lilypadState()
-			
+	
 	match state:
 		EAT:
 			eatState()
-			
+	
+	match state:
+		LILYPAD:
+			lilypadState()
+	
 	match state:
 		MUSHROOM:
 			mushroomState(delta)
-			
+	
+	match state:
+		GRABBED:
+			grabbedState(delta)
+
 	if state != LILYPAD:
 		var pushForce = 10000
 		if self.move_and_slide(): # true if collided
@@ -282,7 +251,7 @@ func _physics_process(delta: float) -> void:
 					if col.get_collider().pushable == true:
 						col.get_collider().velocity = (col.get_normal() * -100)
 
-func idleState(desiredDelta: float):
+func idleState(desiredDelta):
 	if not is_on_floor():
 		if grounded == true:
 			grounded = false
@@ -297,29 +266,11 @@ func idleState(desiredDelta: float):
 			speed = 0
 			direction = Vector2(0, 0)
 			grounded = true
-			
-	var collision = move_and_collide(direction * speed * desiredDelta)
-	if collision:
-		direction = direction.bounce(collision.get_normal())
-	move_and_slide()
 
-func grabbedState(desiredDelta: float):
-	#Make pet attach to cursor
-	direction = (get_global_mouse_position() - position).normalized()
-	game_manager.hovering = self
-	velocity = Vector2(0, 0)
-		
-	if speed >= maxSpeed:
-		speed = maxSpeed
-	else:
-		if round(position.distance_to(get_global_mouse_position())) == 0:
-			speed = 0
-		else:
-			speed = position.distance_to(get_global_mouse_position()) * speedMultiplier
-	
-	var collision = move_and_collide(direction * speed * desiredDelta)
-	if collision:
-		direction = direction.bounce(collision.get_normal())
+	var idleCollision = move_and_collide(direction * speed * desiredDelta)
+	if idleCollision:
+		direction = direction.bounce(idleCollision.get_normal())
+	move_and_slide()
 
 func wanderState():
 	direction = Vector2(wanderDirection, 0)
@@ -330,7 +281,7 @@ func jumpState():
 		direction = Vector2(randf_range(40, 60) * jumpDirection, randf_range(60, 80))
 		speed = randf_range(30, 50)
 		isJumping = false
-		_on_jump_complete()
+		jumpComplete()
 
 func eatState():
 	if target:
@@ -338,46 +289,50 @@ func eatState():
 		direction = Vector2(0, 0)
 		speed = 0
 		tongue.visible = true
-		tongue_end.visible = true
-		frogTongueRenderer.visible = true
-		frogTongueRenderer.get_parent().set_visibility_layer_bit(1, true)
-		frogTongueRenderer.sprite.set_visibility_layer_bit(1, true)
-		frogTongueRenderer.window.set_canvas_cull_mask_bit(1, true)
-		frogTongueRenderer._Camera.set_visibility_layer_bit(1, true)
+		tongueEnd.visible = true
+		tongueRenderer.visible = true
+		tongueRenderer.get_parent().set_visibility_layer_bit(1, true)
+		tongueRenderer.sprite.set_visibility_layer_bit(1, true)
+		tongueRenderer.window.set_canvas_cull_mask_bit(1, true)
+		tongueRenderer._Camera.set_visibility_layer_bit(1, true)
+		
+		for overlapped_body in target.eat_area.get_overlapping_bodies():
+			if overlapped_body == self:
+				for value in GameManager.grassHoppers:
+					if value == target:
+						GameManager.objects.erase(value)
+						GameManager.grassHoppers.erase(value)
+						GameManager.renderers.erase(value.renderer)
+						target.queue_free()
 		
 		if target.grabbing.grabbed == true:
-			tongueStrength = tongueStrength * 1.001
-			var mousePos: Vector2 = frogTongueRenderer.get_mouse_position()
-			var mouseDir: Vector2 = Vector2(Frog.position.x - target.position.x, Frog.position.y - target.position.y).normalized()
+			target.state = 1
+			tongueStrength = tongueStrength * 1.002
+			var mousePos: Vector2 = tongueRenderer.get_mouse_position()
+			var mouseDir: Vector2 = Vector2((self.position.x - 12) - target.renderer.position.x, (self.position.y + 24) - target.renderer.position.y).normalized()
 			var newMousePosX: float = mousePos.x - (mouseDir.x * tongueStrength)
 			var newMousePosY: float = mousePos.y - (mouseDir.y * tongueStrength)
 			
-			print(mouseDir)
 			DisplayServer.warp_mouse(Vector2(newMousePosX, newMousePosY))
+		else:
+			target.state = 3
 		
-		frogTongueRenderer.grab_focus()
+		tongueRenderer.grab_focus()
 		target.eaten(self)
 		tongue.set_point_position(0, tongue.to_local(self.global_position + Vector2(-12, 24)))
 		tongue.set_point_position(1, tongue.to_local(target.global_position))
-		tongue_end.position = (tongue.to_local(target.global_position))
+		tongueEnd.position = (tongue.to_local(target.global_position))
 		
 	else:
 		tongueStrength = -5
-		idle_timer.wait_time = randf_range(1.5, 3)
+		stateTimer.wait_time = randf_range(1.5, 3)
 		idleAnim = randi_range(0, 1)
-		idle_timer.start()
-		frogTongueRenderer.visible = false
+		stateTimer.start()
+		tongueRenderer.visible = false
 		tongue.visible = false
-		tongue_end.visible = false
+		tongueEnd.visible = false
 		state = IDLE
 		lastState = EAT
-
-func set_tongue_passthrough():
-	tongue_polygon.polygon.set(0 , Vector2(frog.position.x, frog.position.y))
-	tongue_polygon.polygon.set(1 , Vector2(frog.position.x, frog.position.y))
-	tongue_polygon.polygon.set(2 , (target.global_position + Vector2(5, 5)))
-	tongue_polygon.polygon.set(3 , (target.global_position - Vector2(5, 5)))
-	frogTongueRenderer.mouse_passthrough_polygon = tongue_polygon.polygon
 
 func lilypadState():
 	if lilypad != null:
@@ -386,29 +341,6 @@ func lilypadState():
 	else:
 		detachFromLilypad()
 
-func attachToLilypad(targetLilypad: Node2D):
-	if state != GRABBED:
-		if attached == false:
-			idle_timer.stop()
-			wander_timer.stop()
-			renderer.grab_focus()
-			state = LILYPAD
-			lilypad = targetLilypad
-			attached = true
-
-func detachFromLilypad():
-	state = GRABBED
-	attached = false
-	
-func stepOnMushroom(targetMushroom: Node2D):
-	if state != GRABBED:
-		if onMushroom == false:
-			idle_timer.stop()
-			wander_timer.stop()
-			state = MUSHROOM
-			mushroom = targetMushroom
-			onMushroom = true
-	
 func mushroomState(desiredDelta):
 	if mushroom != null:
 		renderer.grab_focus()
@@ -425,16 +357,89 @@ func mushroomState(desiredDelta):
 			elif speed < 0:
 				speed = speed * 1.05
 	
-		var collision = move_and_collide(direction * speed * desiredDelta)
-		if collision:
-			direction = direction.bounce(collision.get_normal())
+		var mushroomCollision = move_and_collide(direction * speed * desiredDelta)
+		if mushroomCollision:
+			direction = direction.bounce(mushroomCollision.get_normal())
 	
 		move_and_slide()
 	else:
 		state = IDLE
 		idleAnim = randi_range(0, 1)
-		idle_timer.start()
+		stateTimer.start()
+
+func grabbedState(desiredDelta):
+	#Make pet attach to cursor
+	direction = (get_global_mouse_position() - position).normalized()
+	GameManager.hovering = self
+	velocity = Vector2(0, 0)
+		
+	if speed >= maxSpeed:
+		speed = maxSpeed
+	else:
+		if round(position.distance_to(get_global_mouse_position())) == 0:
+			speed = 0
+		else:
+			speed = position.distance_to(get_global_mouse_position()) * speedMultiplier
 	
+	var grabbedCollision = move_and_collide(direction * speed * desiredDelta)
+	if grabbedCollision:
+		direction = direction.bounce(grabbedCollision.get_normal())
+
+#Triggers-------------------------------------------------------------------------------------------
+func stateTimerTimeout():
+	if GameManager.grassHoppers.is_empty():
+		var jumping: bool = randi_range(0, 1)
+		if jumping:
+			jumpDirection = randi_range(-1, 0)
+			if jumpDirection == 0:
+				jumpDirection = 1
+			isJumping = true
+			state = JUMP
+			lastState = IDLE
+		else:
+			stateTimer.wait_time = randf_range(2, 3)
+			wanderDirection = randi_range(-1, 0)
+			if wanderDirection == 0:
+				wanderDirection = 1
+			stateTimer.start()
+			state = WANDER
+			lastState = IDLE
+	else:
+		target = GameManager.grassHoppers.pick_random()
+		state = EAT
+		lastState = IDLE
+
+func jumpComplete():
+	stateTimer.wait_time = randf_range(2, 5)
+	idleAnim = randi_range(0, 1)
+	stateTimer.start()
+	velocity = Vector2(0, 0)
+	state = IDLE
+	
+	lastState = JUMP
+
+func attachToLilypad(targetLilypad):
+	if state != GRABBED:
+		if attached == false:
+			stateTimer.stop()
+			renderer.grab_focus()
+			state = LILYPAD
+			lilypad = targetLilypad
+			attached = true
+
+func detachFromLilypad():
+	lilypad = null
+	state = GRABBED
+	attached = false
+
+func stepOnMushroom(targetMushroom):
+	if state != GRABBED:
+		if onMushroom == false:
+			stateTimer.stop()
+			state = MUSHROOM
+			mushroom = targetMushroom
+			onMushroom = true
+
 func stepOffMushroom():
 	state = GRABBED
 	onMushroom = false

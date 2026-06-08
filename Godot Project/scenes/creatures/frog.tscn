@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bewpnxhm5e72s"]
+[gd_scene format=3 uid="uid://dxon7fttsuk71"]
 
-[ext_resource type="Script" uid="uid://csbh4vfr7uyfh" path="res://scripts/creatures/frog.gd" id="1_dbfxw"]
+[ext_resource type="Script" uid="uid://4vvkspm61ekp" path="res://scripts/creatures/frog.gd" id="1_qnbes"]
 [ext_resource type="Texture2D" uid="uid://d100ne6g37lq5" path="res://assets/Creatures/frog/Pallettes/frog_pallette.png" id="2_n7xjk"]
 [ext_resource type="Shader" uid="uid://bsedms0wwkxtk" path="res://scenes/creatures/frog.gdshader" id="2_qnbes"]
 [ext_resource type="Texture2D" uid="uid://dukbig2g8aq6a" path="res://assets/Creatures/frog/frog_sheet.png" id="2_uogx6"]
@@ -343,7 +343,7 @@ radius = 70.0
 [node name="Frog" type="CharacterBody2D" unique_id=726386839]
 top_level = true
 input_pickable = true
-script = ExtResource("1_dbfxw")
+script = ExtResource("1_qnbes")
 colourPallette = ExtResource("2_n7xjk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1215535128]
@@ -359,16 +359,12 @@ shape = SubResource("CircleShape2D_qyo2l")
 
 [node name="Renderer" parent="." unique_id=1640452048 node_paths=PackedStringArray("focus", "sprite") instance=ExtResource("3_qnbes")]
 position = Vector2i(0, 0)
-unfocusable = false
 focus = NodePath("..")
 focusSize = Vector2(32, 32)
 sprite = NodePath("../AnimatedSprite2D")
 
-[node name="IdleTimer" type="Timer" parent="." unique_id=1906477383]
+[node name="StateTimer" type="Timer" parent="." unique_id=1906477383]
 wait_time = 3.0
-one_shot = true
-
-[node name="WanderTimer" type="Timer" parent="." unique_id=70458461]
 one_shot = true
 
 [node name="Tongue" type="Line2D" parent="." unique_id=715190420]
@@ -399,6 +395,5 @@ scale = Vector2(0.25347227, 0.57142866)
 polygon = PackedVector2Array(0, 0, 0, 0, 278.64514, -13.789387, 288, 18, 0, 30)
 uv = PackedVector2Array(0, 0, 0, 0, 278.64514, -13.789387, 288, 18, 0, 30)
 
-[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animation_looped"]
-[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
-[connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="idleAnimationLooped"]
+[connection signal="timeout" from="StateTimer" to="." method="stateTimerTimeout"]
